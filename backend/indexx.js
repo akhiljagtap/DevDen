@@ -15,7 +15,7 @@ const app = express()
 dotenv.config()
 
 
-mongoose.connect("mongodb+srv://stack:stack@cluster0.csyo6iy.mongodb.net/").then(() => {
+mongoose.connect(process.env.mongo).then(() => {
     console.log("mongodb connected successfully.");
 }).catch((err) => {
     console.log("mongodb connection failed", err);
@@ -28,6 +28,7 @@ mongoose.connect("mongodb+srv://stack:stack@cluster0.csyo6iy.mongodb.net/").then
 app.use(express.json())
 app.use(cookieParser())
 
+// "mongodb+srv://stack:stack@cluster0.csyo6iy.mongodb.net/"
 
 
 
