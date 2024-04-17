@@ -143,7 +143,7 @@ function Dashposts() {
                                             </Table.Cell>
                                             <Table.Cell>
                                                 <Link to={`/updatepost/${post._id}`}>
-                                                    <span className='text-white hover:underline '>Edit</span>
+                                                    <span className='dark:text-white hover:underline '>Edit</span>
                                                 </Link>
                                             </Table.Cell>
                                         </Table.Row>

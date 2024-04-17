@@ -6,7 +6,7 @@ import {
     updateStart, updateSuccess, updateFailure,
     deleteStart, deleteSuccess, deleteFailure, signoutSuccess
 } from '../redux/user/userSlice'
-import { HiOutlineExclamationCircle } from "react-icons/hi2";
+
 import { Link } from 'react-router-dom';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from '../Firebase';
@@ -101,11 +101,15 @@ function DashProfile() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (Object.keys(formdata).length === 0) {
-            console.log("kuch to daal bc");
+            dispatch(updateFailure("No changes made."))
+            // console.log("nothing to update");
             return
+
         }
         try {
+
             dispatch(updateStart())
+            setloading(true)
             const res = await fetch(`/api/user/update/${currentUser._id}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -113,11 +117,14 @@ function DashProfile() {
             })
             const data = await res.json()
             if (!res.ok) {
+                setloading(false)
                 dispatch(updateFailure(data.message))
             } else {
+                setloading(false)
                 dispatch(updateSuccess(data))
             }
         } catch (error) {
+            setloading(false)
             console.log(error);
             dispatch(updateFailure(error.message))
 
@@ -216,8 +223,8 @@ function DashProfile() {
                     defaultValue={currentUser.email} onChange={handlechange}></TextInput>
                 <TextInput type='password' id='password'
                     onChange={handlechange}></TextInput>
-                <Button gradientDuoTone="purpleToBlue" disabled={loading} type='submit'>
-                    {loading ? "Please wait..." : "Update"}</Button>
+                <Button gradientDuoTone="purpleToBlue" type='submit' disabled={loading}>
+                    {loading ? "Updating" : "Update"}</Button>
 
 
 

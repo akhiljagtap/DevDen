@@ -5,9 +5,9 @@
   "main": "indexx.js",
   "type": "module",
   "scripts": {
+    "build": "npm install && npm install --prefix client && npm run build --prefix client",
     "dev": "nodemon backend/indexx.js",
-    "start": "node backend/indexx.js",
-    "build": "npm install && npm install --prefix client && npm run build --prefix client"
+    "start": "node backend/indexx.js"
   },
   "keywords": [],
   "author": "",
