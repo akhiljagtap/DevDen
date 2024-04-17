@@ -1,5 +1,1 @@
-.vscode/*
-!vscode/extension.json
-.env
-
-node_modules
+error.log
