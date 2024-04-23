@@ -15,6 +15,7 @@ function Updatepost() {
     const [imageUploadError, setimageUploadError] = useState(null)
     const [formdata, setFormdata] = useState({})
     const [publishError, setpublishError] = useState(null)
+    const [error, seterror] = useState('')
     const navigate = useNavigate()
     const { postId } = useParams()
 
@@ -87,7 +88,9 @@ function Updatepost() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
         try {
+
             const res = await fetch(`/api/post/updateposts/${formdata._id}/${currentUser._id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
@@ -145,8 +148,8 @@ function Updatepost() {
                 <ReactQuill onChange={(value) => setFormdata({ ...formdata, content: value })} value={formdata.content}
                     required className='h-72 mb-7' placeholder='Write something...' theme='snow' />
 
-                <Button type='submit' gradientDuoTone="purpleToBlue" className='bg-red-400' disabled={loading}>
-                    {loading ? "please wait" : "Update post"}</Button>
+                <Button type='submit' gradientDuoTone="purpleToBlue" className='bg-red-400' >
+                    Update post</Button>
 
                 {publishError && <p className='text-red-600'>{publishError}</p>}
             </form>

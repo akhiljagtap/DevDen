@@ -9,9 +9,10 @@ import { HiDocumentText, HiOutlineUserGroup } from 'react-icons/hi2'
 
 
 function DashSidebar() {
-  const { currentUser, loading } = useSelector((state) => state.user)
+  const { currentUser } = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const location = useLocation()
+  const [loading, setloading] = useState(false)
   const [tab, settab] = useState("")
 
   useEffect(() => {
@@ -24,17 +25,21 @@ function DashSidebar() {
 
   const handleSignout = async () => {
     try {
+      setloading(true)
       const res = await fetch("/api/user/signout", {
         method: "POST"
       })
       if (!res.ok) {
+        setloading(false)
         const data = await res.json()
         console.log(data.message);
       } else {
+        setloading(false)
         dispatch(signoutSuccess())
 
       }
     } catch (error) {
+      setloading(false)
       console.log(error.message);
 
     }
@@ -69,7 +74,7 @@ function DashSidebar() {
           )}
 
           <Sidebar.Item className="text-red-600 dark:text-red-600 font-semibold" icon={HiArrowSmRight} onClick={handleSignout} >
-            Signout</Sidebar.Item>
+            {loading ? "Signing out" : "Signout"}</Sidebar.Item>
 
         </Sidebar.ItemGroup>
       </Sidebar.Items>

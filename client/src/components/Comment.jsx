@@ -3,6 +3,7 @@ import moment from "moment"
 // import { FaThumbsUp } from 'react-icons/fa'
 import { AiOutlineLike } from "react-icons/ai";
 import { useSelector } from 'react-redux'
+import { FaThumbsUp } from 'react-icons/fa';
 
 
 function Comment({ comment, onLike, onDelete }) {
@@ -49,9 +50,9 @@ function Comment({ comment, onLike, onDelete }) {
                     <button type='button' className={`text-sm text-gray-400 hover:text-gray-500
                     dark:text-gray-300 ${currentUser &&
                         comment.likes.includes(currentUser._id) && '!text-blue-500'}`}
-                        onClick={() => onLike(comment._id)}><AiOutlineLike className='text-lg' /></button>
+                        onClick={() => onLike(comment._id)}><FaThumbsUp className='text-lg' /></button>
                     <p className=' text-gray-400'>
-                        {comment.numberofLikes > 0 && comment.numberofLikes + "" +
+                        {comment.numberofLikes > 0 && comment.numberofLikes + " " +
                             (comment.numberofLikes === 1 ? "like" : "likes")}
                     </p>
                     <button type='button' className='text-red-600 dark:text-red-600'

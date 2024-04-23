@@ -24,6 +24,7 @@ export default function SignUp() {
         }
         try {
             dispatch(signInStart())
+            
             const res = await fetch('/api/auth/signin', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -31,13 +32,16 @@ export default function SignUp() {
             });
             const data = await res.json();
             if (data.success === false) {
+
                 dispatch(signInFailure(data.message))
 
             }
 
             if (res.ok) {
+
                 dispatch(signInSuccess(data))
                 navigate('/');
+                
             }
         } catch (error) {
             dispatch(signInFailure(error.message))
@@ -99,8 +103,10 @@ export default function SignUp() {
                         </Button>
                         {/* <OAuth /> */}
                     </form>
+                    <Link to={"/forgotpassword"}><p className='text-blue-500 text-sm mt-3'>Forgot password?</p></Link>
                     <div className='flex gap-2 text-sm mt-5'>
-                        <span>Don't Have an account?</span>
+
+                        <span>Don't have an account?</span>
                         <Link to='/signup' className='text-blue-500'>
                             Create new account
                         </Link>

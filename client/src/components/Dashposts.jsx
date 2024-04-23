@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from "react-redux"
 import { Button, Modal, Table, Spinner } from "flowbite-react"
 import { Link } from "react-router-dom"
-import { HiOutlineExclamationCircle } from 'react-icons/hi2'
-
 
 function Dashposts() {
     const [userposts, setUserPosts] = useState([])
@@ -76,8 +74,9 @@ function Dashposts() {
             })
             const data = await res.json()
             if (!res.ok) {
-
+                alert("something went wrong")
                 console.log(data.messag);
+
             } else {
                 setUserPosts((prev) => prev.filter((post) => post._id !== postIdToDelete))
             }
@@ -86,17 +85,19 @@ function Dashposts() {
 
 
         } catch (error) {
-
+            alert("something went wrong!")
             console.log(error.messag);
-
         }
 
+
+
+
     }
-    // if (Loading) return (
-    //     <div className='flex justify-center items-center min-h-screen mx-auto'>
-    //         <Spinner size="xl"></Spinner>
-    //     </div>
-    // )
+    if (Loading) return (
+        <div className='flex justify-center items-center min-h-screen mx-auto'>
+            <Spinner size="xl"></Spinner>
+        </div>
+    )
 
 
     return (

@@ -15,6 +15,8 @@ import PostPage from './pages/PostPage'
 import ScrolltoTop from './components/ScrolltoTop'
 import FooterComp from './components/FooterComp'
 import Search from './pages/Search'
+import ForgotPassword from './pages/ForgotPassword'
+import ResetPassword from './pages/ResetPassword'
 
 
 
@@ -32,6 +34,9 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/signin' element={<Signin />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/forgotpassword' element={<ForgotPassword />} />
+        <Route path='/resetpassword' element={<ResetPassword />} />
+
         <Route path='/search' element={<Search />} />
         <Route path='/post/:postSlug' element={<PostPage />} />
         <Route element={<AdminPrivateRoute />}>

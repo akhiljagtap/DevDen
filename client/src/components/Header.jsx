@@ -1,4 +1,4 @@
-import { Avatar, Button, Dropdown, Navbar, TextInput } from 'flowbite-react'
+import { Avatar, Button, Dropdown, Navbar, TextInput, Spinner } from 'flowbite-react'
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AiOutlineSearch } from "react-icons/ai";
@@ -10,6 +10,7 @@ import { toogleTheme } from '../redux/theme/themeSlice';
 
 function Header() {
   const { theme } = useSelector(state => state.theme)
+  const [loading, setLoading] = useState(false)
   const [searchTerm, setsearchTerm] = useState('')
   const path = useLocation().pathname
   const dispatch = useDispatch()
@@ -19,17 +20,21 @@ function Header() {
   const navigate = useNavigate()
   const handleSignout = async () => {
     try {
+      setLoading(true)
       const res = await fetch("/api/user/signout", {
         method: "POST"
       })
       if (!res.ok) {
+        setLoading(false)
         const data = await res.json()
         console.log(data.message);
       } else {
+        setLoading(false)
         dispatch(signoutSuccess())
 
       }
     } catch (error) {
+      setLoading(false)
       console.log(error.message);
 
     }
@@ -53,9 +58,15 @@ function Header() {
     const searchQuery = urlParams.toString()
     navigate(`/search?${searchQuery}`)
 
-
-
   }
+
+  if (loading) return (
+    <div className='flex justify-center items-center min-h-screen mx-auto'>
+      <Spinner size="xl"></Spinner>
+    </div>
+  )
+
+
   return (
     <Navbar className='border-b-2 '>
       <Link to={"/"} className=' self-center  whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'>
@@ -106,7 +117,7 @@ function Header() {
               </Link>
               <Dropdown.Divider />
               <Dropdown.Item className='text-red-600  dark:text-red-500 ' onClick={handleSignout}>
-                <p className='font-semibold'>Signout</p></Dropdown.Item>
+                <p className='font-semibold'>{loading ? "Signingout" : "Signout"}</p></Dropdown.Item>
 
 
             </Dropdown>
