@@ -1,6 +1,8 @@
 import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 
 
 
@@ -11,30 +13,39 @@ export default function ResetPassword() {
     const navigate = useNavigate()
     const [formdata, setFormdata] = useState({})
     const [error, setError] = useState(false)
+    const [loading, setloading] = useState(false)
+    const { id, token } = useParams()
 
     const handleChange = (e) => {
         setFormdata({ ...formdata, [e.target.id]: e.target.value })
     }
+    // console.log(formdata);
 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (!formdata.email) {
+        if (!formdata.password) {
             setError("please enter email")
         }
         try {
-            const res = await fetch("/api/auth/forgotpassword", {
+            setloading(true)
+            const res = await fetch(`/api/auth/resetpassword/${id}/${token}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formdata),
             })
             if (res.ok) {
-                alert("email sent ")
-                navigate("/")
+                setloading(false)
+                toast.success("Your Password has been updated. please login again!")
+                navigate("/signin")
             }
 
+
+
+
         } catch (error) {
-            console.log("error occured")
+            setloading(false)
+            console.log("error occured", error)
 
         }
 
@@ -56,8 +67,8 @@ export default function ResetPassword() {
                 </div>
                 {/* right */}
 
-                <div className='flex-1'>
-                    <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
+                <div className='flex-1 mx-auto'>
+                    <form className='flex flex-col gap-4 ' onSubmit={handleSubmit}>
                         <div>
 
                             <Label value='Reset password' />
@@ -70,11 +81,11 @@ export default function ResetPassword() {
                         </div>
 
                         <Button
-                            gradientDuoTone='purpleToPink'
+                            gradientDuoTone='purpleToBlue'
                             type='submit'
 
-                        // disabled={loading}
-                        >Reset
+                            disabled={!formdata.password}
+                        >{loading ? "Updating" : "Reset password"}
                             {/* {loading ? (
                                 <>
                                     <Spinner size='sm' />

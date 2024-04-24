@@ -1,6 +1,9 @@
 import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
+
 
 
 
@@ -10,31 +13,38 @@ import { Link, useNavigate } from 'react-router-dom';
 export default function forgotpassword() {
     const navigate = useNavigate()
     const [formdata, setFormdata] = useState({})
-    const [error,setError] = useState(false)
+    const [error, setError] = useState(false)
+    const [loading, setloading] = useState(false)
 
     const handleChange = (e) => {
         setFormdata({ ...formdata, [e.target.id]: e.target.value })
     }
-        
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (!formdata.email) {
+        if (formdata.email === "") {
+            setloading(false)
             setError("please enter email")
         }
         try {
+            setloading(true)
             const res = await fetch("/api/auth/forgotpassword", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formdata),
             })
             if (res.ok) {
-                alert("email sent ")
-                navigate("/")
+                <Toaster richColors />
+                toast.success(`Email has been sent to -${formdata.email}`)
+                setloading(false)
+                // alert("email sent ")
+
             }
 
         } catch (error) {
             console.log("error occured")
+            setloading(false)
 
         }
 
@@ -56,9 +66,9 @@ export default function forgotpassword() {
                 </div>
                 {/* right */}
 
-                <div className='flex-1'>
+                <div className='flex-1 mx-auto'>
                     <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
-                        <div>
+                        <div className=''>
                             <Label value='Email' />
                             <TextInput
                                 type='email'
@@ -69,11 +79,12 @@ export default function forgotpassword() {
                         </div>
 
                         <Button
-                            gradientDuoTone='purpleToPink'
+                            gradientDuoTone='purpleToBlue'
                             type='submit'
 
-                        // disabled={loading}
-                        >Send
+                            disabled={!formdata.email}
+                        >{loading ? "Sending" : "Send"}
+
                             {/* {loading ? (
                                 <>
                                     <Spinner size='sm' />
@@ -85,6 +96,7 @@ export default function forgotpassword() {
                         </Button>
                         {/* <OAuth /> */}
                     </form>
+                    {error && <p className='text-red-600 font-semibold text-sm'>{error}</p>}
 
                     {/* {errorMessage && (
                         <Alert className='mt-5 font-semibold' color='failure'>

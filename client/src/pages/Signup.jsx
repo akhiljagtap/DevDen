@@ -70,7 +70,7 @@ export default function SignUp() {
               <Label value='Your email' />
               <TextInput
                 type='email'
-                placeholder='name@company.com'
+                placeholder='abc@gmail.com'
                 id='email'
                 onChange={handleChange}
               />
@@ -103,7 +103,7 @@ export default function SignUp() {
           <div className='flex gap-2 text-sm mt-5'>
             <span>Already Have an account?</span>
             <Link to={"/signin"} className='text-blue-500'>
-              Login In
+              Signin
             </Link>
           </div>
           {errorMessage && (

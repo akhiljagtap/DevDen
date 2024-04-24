@@ -63,13 +63,8 @@ export const forgotpassword = async (req, res) => {
             console.log("email not found");
         }
 
-        else {
-            const token = jwt.sign({ id: email }, process.env.jwt_secrate_key)
-            res.status(200).cookie("cokkie", token).json({ message: "Email sent successfully." })
-        }
-
-
-
+        const token = jwt.sign({ id: userEmail._id }, process.env.jwt_secrate_key, { expiresIn: "1d" })
+        res.status(200).cookie("cokkie", token).json({ message: "Email sent successfully." })
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -83,13 +78,14 @@ export const forgotpassword = async (req, res) => {
             from: 'akhiljagtapbusiness@gmail.com',
             to: email,
             subject: 'Your Reset Password Link.',
-            text: `http://localhost:5173/resetpassword/`
+            text: `http://localhost:5173/resetpassword/${userEmail._id}/${token}`
         };
 
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
                 console.log(error);
             } else {
+                res.status(200).json("email sent successfully!")
                 console.log('Email sent: ' + info.response);
             }
         });
@@ -100,6 +96,41 @@ export const forgotpassword = async (req, res) => {
     }
 
 }
+
+export const resetpassword = async (req, res) => {
+    const { password } = req.body
+    const { id, token } = req.params
+
+    try {
+        jwt.verify(token, process.env.jwt_secrate_key, (err, decode) => {
+            if (err) {
+                return res.json("error with token")
+            } else {
+                bcryptjs.hash(password, 10).then(hash => {
+                    User.findByIdAndUpdate({ _id: id }, { password: hash })
+                        .then(u => res.send("success"))
+                })
+            }
+
+        })
+
+    } catch (error) {
+        console.log(error);
+
+    }
+
+
+
+
+
+}
+
+
+
+
+
+
+
 
 
 
