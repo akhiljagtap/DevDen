@@ -87,11 +87,11 @@ function DashComments() {
 
     // }
 
-    if (Loading) return (
-        <div className='flex justify-center items-center min-h-screen mx-auto'>
-            <Spinner size="xl"></Spinner>
-        </div>
-    )
+    // if (Loading) return (
+    //     <div className='flex justify-center items-center min-h-screen mx-auto'>
+    //         <Spinner size="xl"></Spinner>
+    //     </div>
+    // )
 
 
 
@@ -151,14 +151,15 @@ function DashComments() {
                     </>
                     {
                         showMore && <button onClick={handleShowMore}
-                            className='w-full p-3 self-center text-blue-600  text-sm'>Show more</button>
+                            className='w-full p-3 self-center text-blue-600  text-sm'>{Loading ? <Spinner /> : "Show more"}</button>
                     }
 
                 </Table>
 
 
 
-            ) : (<p>You have no comments yet!</p>)
+            ) : (<p>You have no comments yet! <span>{Loading ? <Spinner className='flex justify-center
+             items-center min-h-screen mx-auto' size="lg" /> : "You have no comments yet!"}</span></p>)
             }
             {/* <Modal show={showModal} onClose={() => setshowModal(false)} popup size="md" >
                 <Modal.Header />

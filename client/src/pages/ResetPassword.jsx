@@ -80,11 +80,12 @@ export default function ResetPassword() {
                             />
                         </div>
 
-                        <Button
-                            gradientDuoTone='purpleToBlue'
+                        <button className='	bg-green-600 p-1 hover:opacity-95 font-semibold rounded-sm'
+                            // gradientDuoTone='purpleToBlue'
                             type='submit'
-
                             disabled={!formdata.password}
+
+
                         >{loading ? "Updating" : "Reset password"}
                             {/* {loading ? (
                                 <>
@@ -94,7 +95,7 @@ export default function ResetPassword() {
                             ) : (
                                 'Send'
                             )} */}
-                        </Button>
+                        </button>
                         {/* <OAuth /> */}
                     </form>
 

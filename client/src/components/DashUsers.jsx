@@ -95,11 +95,11 @@ function DashUsers() {
 
     }
 
-    if (loading) return (
-        <div className='flex justify-center items-center min-h-screen mx-auto'>
-            <Spinner size="xl"></Spinner>
-        </div>
-    )
+    // if (loading) return (
+    //     <div className='flex justify-center items-center min-h-screen mx-auto'>
+    //         <Spinner size="xl"></Spinner>
+    //     </div>
+    // )
 
 
 
@@ -158,14 +158,15 @@ function DashUsers() {
                     </>
                     {
                         showMore && <button onClick={handleShowMore}
-                            className='w-full p-3 self-center text-blue-600  text-sm'>Show more</button>
+                            className='w-full p-3 self-center text-blue-600  text-sm'>{loading ? <Spinner /> : "Show more"}</button>
                     }
 
                 </Table>
 
 
 
-            ) : (<p>You have no post yet!</p>)
+            ) : (<p>No user found!<span>{loading ? <Spinner className='flex justify-center items-center 
+            min-h-screen mx-auto' size="lg" /> : "No user found!"}</span></p>)
             }
             <Modal show={showModal} onClose={() => setshowModal(false)} popup size="md" >
                 <Modal.Header />

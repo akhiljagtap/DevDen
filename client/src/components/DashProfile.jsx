@@ -22,6 +22,7 @@ function DashProfile() {
     const [formdata, setformdata] = useState({})
     const [showModal, setshowModal] = useState(false)
     const [loading, setloading] = useState(false)
+    const [eror, seteror] = useState(null)
 
     // console.log(imageFileUploadingError, imageFileUploadingProgress);
 
@@ -100,15 +101,20 @@ function DashProfile() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (Object.keys(formdata).length === 0) {
-            dispatch(updateFailure("No changes made."))
-            // console.log("nothing to update");
-            return
+        // if (Object.keys(formdata).length === 0) {
+        //     return dispatch(updateFailure("No changes made."))
+        //     // console.log("nothing to update");
 
-        }
+
+        // }
         try {
+            if (Object.keys(formdata).length === 0) {
+                return dispatch(updateFailure("No changes made."))
+                // console.log("nothing to update");
+            }
 
             dispatch(updateStart())
+
             setloading(true)
             const res = await fetch(`/api/user/update/${currentUser._id}`, {
                 method: "POST",
@@ -131,6 +137,9 @@ function DashProfile() {
         }
 
     }
+
+
+
 
 
 
@@ -173,11 +182,11 @@ function DashProfile() {
         }
     }
 
-    if (loading) return (
-        <div className='flex justify-center items-center min-h-screen mx-auto'>
-            <Spinner size="xl"></Spinner>
-        </div>
-    )
+    // if (loading) return (
+    //     <div className='flex justify-center items-center min-h-screen mx-auto'>
+    //         <Spinner size="lg"></Spinner>
+    //     </div>
+    // )
 
 
 
@@ -224,7 +233,7 @@ function DashProfile() {
                 <TextInput type='password' id='password'
                     onChange={handlechange}></TextInput>
                 <Button gradientDuoTone="purpleToBlue" type='submit' disabled={loading}>
-                    {loading ? "Updating" : "Update"}</Button>
+                    {loading ? <Spinner size="sm" /> : "Update"}</Button>
 
 
 

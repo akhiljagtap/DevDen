@@ -1,4 +1,4 @@
-import { Alert, Button, Modal, TextInput, Textarea } from 'flowbite-react';
+import { Alert, Button, Modal, Spinner, TextInput, Textarea } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -11,6 +11,7 @@ export default function CommentSection({ postId }) {
     const [commentError, setCommentError] = useState(null);
     const [comments, setComments] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [loading, setloading] = useState(false)
     const [commentToDelete, setCommentToDelete] = useState(null);
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
@@ -19,6 +20,7 @@ export default function CommentSection({ postId }) {
             return;
         }
         try {
+            setloading(true)
             const res = await fetch('/api/comment/create', {
                 method: 'POST',
                 headers: {
@@ -32,11 +34,13 @@ export default function CommentSection({ postId }) {
             });
             const data = await res.json();
             if (res.ok) {
+                setloading(false)
                 setComment('');
                 setCommentError(null);
                 setComments([data, ...comments]);
             }
         } catch (error) {
+            setloading(false)
             setCommentError(error.message);
         }
     };
@@ -146,7 +150,7 @@ export default function CommentSection({ postId }) {
                             {200 - comment.length} characters remaining
                         </p>
                         <Button pill gradientDuoTone='purpleToBlue' type='submit' disabled={comment.length === 0}>
-                            Comment
+                            {loading ? <Spinner  size="sm" /> : "Comment"}
                         </Button>
                     </div>
                     {commentError && (

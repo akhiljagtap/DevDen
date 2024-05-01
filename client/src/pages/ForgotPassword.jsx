@@ -78,12 +78,12 @@ export default function forgotpassword() {
                             />
                         </div>
 
-                        <Button
-                            gradientDuoTone='purpleToBlue'
+                        <button className='	bg-green-600 p-1 hover:opacity-95 font-semibold rounded-sm'
+                            // gradientDuoTone='purpleToBlue'
                             type='submit'
-
                             disabled={!formdata.email}
-                        >{loading ? "Sending" : "Send"}
+
+                        >{loading ? "Sending" : "Send reset password link"}
 
                             {/* {loading ? (
                                 <>
@@ -91,9 +91,9 @@ export default function forgotpassword() {
                                     <span className='pl-3'>Loading...</span>
                                 </>
                             ) : (
-                                'Send'
+                                ''
                             )} */}
-                        </Button>
+                        </button>
                         {/* <OAuth /> */}
                     </form>
                     {error && <p className='text-red-600 font-semibold text-sm'>{error}</p>}

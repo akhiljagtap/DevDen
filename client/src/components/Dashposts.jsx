@@ -95,7 +95,7 @@ function Dashposts() {
     }
     if (Loading) return (
         <div className='flex justify-center items-center min-h-screen mx-auto'>
-            <Spinner size="xl"></Spinner>
+            <Spinner size="lg"></Spinner>
         </div>
     )
 

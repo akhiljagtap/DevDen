@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { signInSuccess, signInStart, signInFailure } from '../redux/user/userSlice.js';
 
 
+
 // import OAuth from '../components/OAuth';
 
 export default function SignUp() {
@@ -24,7 +25,7 @@ export default function SignUp() {
         }
         try {
             dispatch(signInStart())
-            
+
             const res = await fetch('/api/auth/signin', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -41,7 +42,7 @@ export default function SignUp() {
 
                 dispatch(signInSuccess(data))
                 navigate('/');
-                
+
             }
         } catch (error) {
             dispatch(signInFailure(error.message))
@@ -49,6 +50,10 @@ export default function SignUp() {
 
         }
     };
+
+    const onChange = () => {
+
+    }
     return (
         <div className='min-h-screen mt-20'>
             <div className='flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5'>
@@ -101,6 +106,7 @@ export default function SignUp() {
                                 'Login'
                             )}
                         </Button>
+
                         {/* <OAuth /> */}
                     </form>
                     <Link to={"/forgotpassword"}><p className='text-blue-500 text-sm mt-3'>Forgot password?</p></Link>
