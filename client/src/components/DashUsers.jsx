@@ -106,26 +106,26 @@ function DashUsers() {
 
 
     return (
-        <div className='table-auto p-3 md:mx-auto '>
+        <div className='table-auto p-3 md:mx-auto mt-16'>
             {currentUser.isAdmin && users.length > 0 ? (
 
                 <Table hoverable className='shadow-md'>
-                    <Table.Head>
+                    <Table.Head >
                         <Table.HeadCell>Created date</Table.HeadCell>
                         <Table.HeadCell>User image</Table.HeadCell>
-                        <Table.HeadCell>Username </Table.HeadCell>
+                        <Table.HeadCell className='text-white'>Username </Table.HeadCell>
                         <Table.HeadCell> Email</Table.HeadCell>
                         <Table.HeadCell>Admin</Table.HeadCell>
                         <Table.HeadCell>Delete</Table.HeadCell>
-
                     </Table.Head>
+
                     <>
                         {
                             users.map((user) => {
                                 return (
-                                    <Table.Body className='divide-y'>
-                                        <Table.Row className='font-medium bg-white dark:bg-gray-900'>
-                                            <Table.Cell className='font-medium'>{new Date(user.createdAt).toLocaleDateString()}</Table.Cell>
+                                    <Table.Body className='divide-y dark:bg-slate-950'>
+                                        <Table.Row className='font-medium  dark:bg-gray-950'>
+                                            <Table.Cell className='font-medium text-gray-400'>{new Date(user.createdAt).toLocaleDateString()}</Table.Cell>
 
 
                                             <Table.Cell>
@@ -135,7 +135,7 @@ function DashUsers() {
 
 
                                             <Table.Cell>
-                                                <p className='text-gray-900 dark:text-gray-300'>{user.username}</p>
+                                                <p className='text-white tracking-tight'>{user.username}</p>
                                             </Table.Cell>
 
                                             <Table.Cell>{user.email}</Table.Cell>

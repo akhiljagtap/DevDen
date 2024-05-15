@@ -17,6 +17,7 @@ import FooterComp from './components/FooterComp'
 import Search from './pages/Search'
 import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword'
+import ConnectUs from './pages/ConnectUs'
 
 
 
@@ -32,6 +33,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
+        <Route path='/connect' element={<ConnectUs />} />
         <Route path='/signin' element={<Signin />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/forgotpassword' element={<ForgotPassword />} />

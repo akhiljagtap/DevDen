@@ -63,7 +63,7 @@ export const forgotpassword = async (req, res) => {
             console.log("email not found");
         }
 
-        const token = jwt.sign({ id: userEmail._id }, process.env.jwt_secrate_key, { expiresIn: "1d" })
+        const token = jwt.sign({ id: userEmail._id }, process.env.jwt_secrate_key, { expiresIn: "1h" })
         res.status(200).cookie("cokkie", token).json({ message: "Email sent successfully." })
         var transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -118,12 +118,12 @@ export const resetpassword = async (req, res) => {
         console.log(error);
 
     }
-
-
-
-
-
+    
 }
+
+
+
+
 
 
 

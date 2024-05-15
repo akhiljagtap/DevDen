@@ -126,8 +126,8 @@ export default function CommentSection({ postId }) {
                     </Link>
                 </div>
             ) : (
-                <div className='text-sm text-teal-500 my-5 flex gap-1'>
-                    You must be signed in to comment.
+                <div className='text-sm text-green-400 my-5 flex gap-1 tracking-tight'>
+                    Want to make comments please -
                     <Link className='text-blue-500 hover:underline' to={'/signin'}>
                         Sign In
                     </Link>
@@ -150,7 +150,7 @@ export default function CommentSection({ postId }) {
                             {200 - comment.length} characters remaining
                         </p>
                         <Button pill gradientDuoTone='purpleToBlue' type='submit' disabled={comment.length === 0}>
-                            {loading ? <Spinner  size="sm" /> : "Comment"}
+                            {loading ? <Spinner size="sm" /> : "Comment"}
                         </Button>
                     </div>
                     {commentError && (

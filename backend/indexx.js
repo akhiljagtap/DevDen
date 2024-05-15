@@ -8,6 +8,7 @@ import testrouter from "./Routes/testRoute.js"
 import postrouter from "./Routes/postRoute.js"
 import commentrouter from "./Routes/comment.Route.js"
 import path from "path"
+import feedbackRouter from "./Routes/feedBackRoute.js"
 
 const __dirname = path.resolve()
 const app = express()
@@ -37,6 +38,7 @@ app.use("/api/auth", authRouter)
 app.use("/api/user", userRouter)
 app.use("/api/post", postrouter)
 app.use("/api/comment", commentrouter)
+app.use("/api/feedback", feedbackRouter)
 
 app.use(express.static(path.join(__dirname, '/client/dist')))
 

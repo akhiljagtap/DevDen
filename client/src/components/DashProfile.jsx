@@ -12,6 +12,7 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/
 import { app } from '../Firebase';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { BiEditAlt } from "react-icons/bi";
 
 function DashProfile() {
     const filePickerRef = useRef()
@@ -196,7 +197,7 @@ function DashProfile() {
 
 
     return (
-        <div className='max-w-lg mx-auto p-3 w-full'>
+        <div className='max-w-lg mx-auto p-3 w-full mt-16'>
             <h1 className='font-semibold my-7 text-center text-3xl'>Profile</h1>
             <form className='flex flex-col gap-3 ' onSubmit={handleSubmit} >
                 <input type='file' accept='image/*' hidden ref={filePickerRef} onChange={handleImgaeChange}></input>
@@ -220,8 +221,28 @@ function DashProfile() {
                                 }} />
                         )
                     }
-                    <img className='w-32 h-32 rounded-full border-4 border[lightgray] object-cover cursor-pointer'
-                        src={imageFileUrl || currentUser.avtar} />
+                    {/* <img  className='w-32 h-32 rounded-full border-4 border[lightgray] object-cover cursor-pointer'
+                        src={imageFileUrl || currentUser.avtar} /> */}
+                    <div className="relative flex items-center">
+                        <img
+                            className='w-32 h-32 rounded-full border-4 border-[lightgray] object-cover cursor-pointer'
+                            src={imageFileUrl || currentUser.avtar}
+                            alt="User Image"
+                        />
+                        {/* Edit icon button */}
+                        <button
+                            className="ml-2 text-white rounded-full p-2 cursor-pointer relative"
+
+                        >
+                            <BiEditAlt className='hover:text-yellow-200' size={30} />
+                            {/* Tooltip */}
+
+                        </button>
+                    </div>
+
+
+
+
                 </div>
                 {
                     imageFileUploadingError && <Alert>{imageFileUploadingError}</Alert>

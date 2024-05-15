@@ -100,13 +100,13 @@ function DashComments() {
 
 
     return (
-        <div className='table-auto p-3 md:mx-auto '>
+        <div className='table-auto p-3 md:mx-auto mt-16 '>
             {currentUser.isAdmin && comments.length > 0 ? (
 
                 <Table hoverable className='shadow-md'>
                     <Table.Head>
                         <Table.HeadCell>Date Updated</Table.HeadCell>
-                        <Table.HeadCell>Commnets</Table.HeadCell>
+                        <Table.HeadCell className='text-white'>Commnets</Table.HeadCell>
                         <Table.HeadCell>No of likes </Table.HeadCell>
                         <Table.HeadCell> PostId</Table.HeadCell>
                         <Table.HeadCell>UserId</Table.HeadCell>
@@ -117,13 +117,13 @@ function DashComments() {
                         {
                             comments.map((comment) => {
                                 return (
-                                    <Table.Body className='divide-y'>
-                                        <Table.Row className='font-medium bg-white dark:bg-gray-900'>
-                                            <Table.Cell className='font-medium'>{new Date(comment.updatedAt).toLocaleDateString()}</Table.Cell>
+                                    <Table.Body className='divide-y bg-slate-900'>
+                                        <Table.Row className='font-medium  dark:bg-gray-950'>
+                                            <Table.Cell className='font-medium text-gray-500'>{new Date(comment.updatedAt).toLocaleDateString()}</Table.Cell>
 
 
                                             <Table.Cell>
-                                                <p>{comment.content}</p>
+                                                <p className='text-white'>{comment.content}</p>
                                             </Table.Cell>
 
 

@@ -101,14 +101,14 @@ function Dashposts() {
 
 
     return (
-        <div className='table-auto p-3 md:mx-auto '>
+        <div className='table-auto p-3 md:mx-auto mt-16 '>
             {currentUser.isAdmin && userposts.length > 0 ? (
 
                 <Table hoverable className='shadow-md '>
                     <Table.Head>
                         <Table.HeadCell>Updated date</Table.HeadCell>
                         <Table.HeadCell>Image</Table.HeadCell>
-                        <Table.HeadCell>Title </Table.HeadCell>
+                        <Table.HeadCell className='text-white'>Title </Table.HeadCell>
                         <Table.HeadCell> Category</Table.HeadCell>
                         <Table.HeadCell>Delete</Table.HeadCell>
                         <Table.HeadCell>
@@ -120,7 +120,7 @@ function Dashposts() {
                             userposts.map((post) => {
                                 return (
                                     <Table.Body className='divide-y'>
-                                        <Table.Row className='font-medium bg-white dark:bg-gray-900'>
+                                        <Table.Row className='font-medium  dark:bg-gray-950'>
                                             <Table.Cell className='font-medium'>{new Date(post.updatedAt).toLocaleDateString()}</Table.Cell>
 
                                             <Table.Cell>

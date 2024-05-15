@@ -96,7 +96,7 @@ function Search() {
 
 
     return (
-        <div className='flex flex-col md:flex-row'>
+        <div className='flex flex-col md:flex-row mt-14'>
             <div className='p-7 border-b md:border-r md:min-h-screen border-gray-500'>
                 <form className='flex flex-col gap-8' onSubmit={handleSubmit}>
                     <div className='flex items-center gap-2'>
@@ -121,12 +121,13 @@ function Search() {
                             <option value="angular">Angular</option>
                         </Select>
                     </div>
-                    <Button gradientDuoTone="purpleToBlue" type='submit'>Apply filter</Button>
+                    <button className='bg-white text-black p-1 font-semibold tracking-tight w-full
+                    rounded-full hover:opacity-90' type='submit'>Apply filter</button>
                 </form>
             </div>
             <div className='w-full'>
                 <h1 className='text-3xl font-semibold sm:border-b border-gray-500
-                p-3 mt-5'>Post result</h1>
+                p-3 mt-5 tracking-tighter'>Search result</h1>
                 <>
                     <div className='p-4 flex flex-wrap '>
                         {!loading && posts.length === 0 &&

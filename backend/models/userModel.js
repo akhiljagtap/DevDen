@@ -19,9 +19,10 @@ const userSchema = mongoose.Schema({
     },
     avtar: {
         type: String,
-        default: "https://yourteachingmentor.com/wp-content/uploads/2020/12/istockphoto-1223671392-612x612-1.jpg"
+        default: "https://tse2.mm.bing.net/th?id=OIP.OlnxO753VRgHKDLLDzCKoAHaHw&pid=Api&P=0&h=180"
 
     },
+
     isAdmin: {
         type: Boolean,
         default: false

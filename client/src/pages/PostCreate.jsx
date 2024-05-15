@@ -102,8 +102,8 @@ function PostCreate() {
 
 
     return (
-        <div className='mx-auto min-h-screen p-3 max-w-3xl'>
-            <h1 className='text-center font-semibold my-7 text-3xl'>Create post</h1>
+        <div className='mx-auto min-h-screen p-3 max-w-3xl '>
+            <h1 className='text-center font-semibold my-7 text-3xl mt-14 tracking-tighter'>Create post</h1>
             <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
                 <div className='flex flex-col gap-4 sm:flex-row justify-between'>
                     <TextInput type='text' placeholder='Title' id='title' required
@@ -129,8 +129,8 @@ function PostCreate() {
                 {formdata.image && <img src={formdata.image} alt='upload'
                     className="w-24 h-24 object-cover"></img>}
                 <ReactQuill onChange={(value) => setFormdata({ ...formdata, content: value })} required
-                    className='h-72 mb-7 dark:text-white'
-                    placeholder='Write something...' theme='snow' />
+                    className='h-56 mb-7 dark:text-white '
+                    theme='snow' />
 
                 <Button type='submit' gradientDuoTone="purpleToBlue" className='bg-red-400'>
                     {loading ? <Spinner size="md" className='mx-auto' /> : "Create post"} </Button>
