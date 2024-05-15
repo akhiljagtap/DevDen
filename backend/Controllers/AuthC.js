@@ -30,14 +30,14 @@ export const signup = async (req, res, next) => {
 }
 
 export const signin = async (req, res, next) => {
-    const { username, password } = req.body
-    if (!username || !password) {
-        next(errorHandler(400, "please enter email or password"))
-    }
+    const { username, password, email } = req.body
+    // if (username === "" || email === "") {
+    //     next(errorHandler(400, "username or email is required"))
+    // }
     try {
         const isUser = await User.findOne({ username })
         if (!isUser) {
-            return next(errorHandler(402, "User not found with this username"))
+            return next(errorHandler(402, "User not found."))
         }
         const isRightPassword = bcryptjs.compareSync(password, isUser.password)
         if (!isRightPassword) {
