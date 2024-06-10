@@ -96,7 +96,7 @@ function Search() {
 
 
     return (
-        <div className='flex flex-col md:flex-row mt-14'>
+        <div className='flex flex-col md:flex-row mt-14 bg-bg6 text-white'>
             <div className='p-7 border-b md:border-r md:min-h-screen border-gray-500'>
                 <form className='flex flex-col gap-8' onSubmit={handleSubmit}>
                     <div className='flex items-center gap-2'>

@@ -10,6 +10,7 @@ import { signInSuccess, signInStart, signInFailure } from '../redux/user/userSli
 
 export default function SignUp() {
     const [formData, setFormData] = useState({});
+    const disabledButton = !formData.username || !formData.password
 
 
     const navigate = useNavigate();
@@ -57,37 +58,37 @@ export default function SignUp() {
 
     return (
 
-        <div className="flex flex-col items-center min-h-screen bg-gray-100">
-            <h2 className="text-2xl font-bold mt-24 text-black mb-2 tracking-tighter ">Sign In</h2>
-            <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full sm:w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/4">
+        <div className="flex flex-col items-center min-h-screen bg-black">
+            <h2 className="text-2xl font-bold mt-24  mb-2 tracking-tighter text-white ">Sign In</h2>
+            <form onSubmit={handleSubmit} className="bg-bg3 shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full sm:w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/4">
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-semibold leading-tight mb-2" for="username">
+                    <label className="block text-white text-sm font-semibold leading-tight mb-2" for="username">
                         Username
                     </label>
-                    <input onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight 
+                    <input onChange={handleChange} className="shadow appearance-none border bg-bgcolor rounded w-full py-2 px-3 text-gray-700 leading-tight 
             focus:outline-none focus:shadow-outline placeholder:text-sm text-xs font-roboto"
                         id="username" type="text" placeholder="username" />
                 </div>
                 <div className="mb-6">
-                    <label className="block text-gray-700 font-bold mb-2 leading-tight text-xs" for="password">
+                    <label className="block text-white font-bold mb-2  leading-tight text-xs" for="password">
                         Password
                     </label>
-                    <input onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3  
+                    <input onChange={handleChange} className="shadow appearance-none border bg-bgcolor rounded w-full py-2 px-3 text-gray-700 mb-3  
             leading-tight focus:outline-none focus:shadow-outline placeholder:text-sm " id="password" type="password" placeholder='password' />
                 </div>
                 <div className="flex items-center justify-center">
-                    <button className="bg-green-600 text-white px-2 py-1 font-medium rounded hover:opacity-90 
-                    outline-none tracking-tighter">Sign In</button>
+                    <button className={`bg-green-600 text-white px-2 py-1 font-medium rounded 
+                    outline-none tracking-tighter ${disabledButton ? 'opacity-30 cursor-not-allowed' : 'opacity-100'}`} disabled={disabledButton}>Sign In</button>
                 </div>
             </form>
-            <Link to={"/forgotpassword"} className='text-blue-600 text-sm font-medium tracking-normal hover:underline'
+            <Link to={"/forgotpassword"} className='text-blue-500 text-sm font-medium tracking-normal hover:underline'
             >
-                Forgot your password?</Link>
+                Forgotten password ?</Link>
             <div class="text-gray-700 text-sm mt-1 flex items-center ">
 
 
-                <span class="mr-1">Don't have an account?</span>
-                <Link to={"/signup"} class="text-blue-600 hover:underline font-medium">Create account</Link>
+                <span class="mr-1 text-white  text-xs">Don't have an account ?</span>
+                <Link to={"/signup"} class="text-blue-500 hover:underline font-medium">Create account</Link>
             </div>
 
         </div>
@@ -98,7 +99,7 @@ export default function SignUp() {
 
 
 
-    // return (
+
     //     <div classNameName='min-h-screen mt-20'>
     //         <div classNameName='flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5'>
     //             {/* left */}

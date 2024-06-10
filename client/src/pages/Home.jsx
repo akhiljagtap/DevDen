@@ -40,17 +40,17 @@ function Home() {
 
   if (loading) return (
     <div className='flex justify-center items-center min-h-screen'>
-      <Spinner size="xl"></Spinner>
+      <Spinner size="lg" ></Spinner>
     </div>
   )
 
   return (
-    <div className='dark:bg-black '>
+    <div className='bg-black  text-white'>
       <div className='flex flex-col gap-3 p-28 px-3-3 max-w-6xl mx-auto'>
-        <h1 className={`whitespace-nowrap font-thin transition-blur-left  duration-blur-left
+        <h1 className={`whitespace-nowrap font-semibold transition-blur-left  duration-blur-left
          ${showblur ? 'blur-4 translate-x-full' : 'blur-0 translate-x-0'}
-         tracking-tighter md:text-3xl lg:text-6xl sm:text-sm filter: blur(4px);
-         transition: filter 0.5s ease-in-out `}>Begin Your Journey Here.</h1>
+         tracking-tighter md:text-3xl lg:text-7xl sm:text-sm filter: blur(4px);
+         transition: filter 0.5s ease-in-out leading-tight `}>Begin Your Journey Here.</h1>
 
 
 
@@ -58,10 +58,10 @@ function Home() {
           This text will animate with blur on mount.
         </p> */}
 
-        <h4 className='dark:text-white text-sm font-thin tracking-wider uppercase mt-3'
+        <h4 className='dark:text-white  font-medium tracking-widest uppercase mt-3'
         >Where code meets creativity, explore
-          <Link to={"/search"} className='ml-2 text-lg  dark:text-green-400 font-thin hover:underline mt-1
-           lowercase tracking-tight text-blue-700 '
+          <Link to={"/search"} className='ml-2 text-lg  text-green-500 font-medium underline hover:opacity-85 mt-1
+           lowercase tracking-tight leading-tight  '
           >innovative articles here.</Link>
         </h4>
 

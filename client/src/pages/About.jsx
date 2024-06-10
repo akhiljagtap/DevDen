@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { VscError } from "react-icons/vsc";
 
 function About() {
     const [feedback, setfeedback] = useState({})
@@ -19,7 +20,7 @@ function About() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (Object.keys(feedback).length === 0) {
-            seterror("Feedback can not be empty")
+            seterror("Feedback can not be empty!")
             return
         }
 
@@ -62,10 +63,10 @@ function About() {
     )
 
     return (
-        <div className='flex min-h-screen justify-center dark:bg-black '>
+        <div className='flex min-h-screen justify-center bg-black '>
             <div className='max-w-2xl  text-center mx-auto p-3'>
                 <div>
-                    <h1 className='font-semibold my-7 mt-20 text-center text-3xl tracking-tighter'>About us</h1>
+                    <h1 className='font-semibold my-7 mt-20 text-white text-center text-3xl tracking-tighter'>About DevDen</h1>
                     <div className='text-md font-thin  flex flex-col gap-6 text-gray-400'>
                         <p>Welcome to the DevDen.This blog was created by Akhil Jagtap, as personal
                             project to share his thoughts and ideas with world. Akhil is MERN stack developer
@@ -94,11 +95,12 @@ function About() {
                         </nav>
 
                         <div class="container mx-auto mt-6 p-8 bg-black rounded-lg shadow-lg">
-                            <h1 class="text-2xl font-bold mb-6 tracking-tighter">Send Us Your Feedback</h1>
-                            {error && <p className='text-red-500 font-thin text-sm tracking-tight mb-5'>{error}</p>}
+                            <h1 class="text-2xl font-bold mb-6 tracking-tighter text-white leading-tight
+                            ">Send Us Your Feedback</h1>
+                            {error && <p className='text-red-500 flex items-center gap-3 font-medium text-sm tracking-tight mb-5'>{error}<span><VscError className='mx-auto ' size={20} /></span></p>}
                             <form onSubmit={handleSubmit}>
                                 <input onChange={handleChnage} type="text" placeholder="Enter your feedback" id='feed' name="feedback"
-                                    class="w-full px-4 py-2 mb-6 border border-gray-300 rounded-md focus:outline-none" />
+                                    class="w-full px-4 py-2 mb-6 border border-black bg-bg3 rounded-md focus:outline-none" />
                                 <button type="submit" className="mx-auto px-3 py-1
                                  bg-green-600 text-white hover:opacity-90 focus:outline-none text-sm tracking-tighter font-semibold">
                                     {loading ? <Spinner /> : "Send"}

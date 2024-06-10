@@ -11,8 +11,12 @@ export default {
       roboto: ['Roboto', 'sans-serif'],
     },
     colors: {
-      bgcolor: "#2C2D2D",
-      bg2: "232424"
+      bgcolor: "#212121",
+      bg2: "#26282A",
+      bg3: "#242424",
+      bg4: "#121212",
+      bg5: "#26282A",
+      bg6: "#100c08",
 
     },
     transitionProperty: {
@@ -25,6 +29,9 @@ export default {
     },
     blur: {
       '4': '10px', // Customize the blur amount as needed
+    },
+    boxShadow: {
+      'flowbite-hover': 'none',
     },
   },
   plugins: [require("flowbite/plugin"), require('tailwind-scrollbar'),],

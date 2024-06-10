@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 
 
 
+
 function DashbordComp() {
     const [users, setUsers] = useState([])
     const [comments, setcomments] = useState([])
@@ -91,59 +92,54 @@ function DashbordComp() {
 
 
     return (
-        <div className='p-3 md:mx-auto mt-16'>
+
+
+
+        <div className='p-3 md:mx-auto mt-12 ml-16  '>
             <div className="flex-wrap flex gap-4 justify-center ">
-                <div className='flex flex-col p-3 gap-4 md:w-72 w-full rounded-md
-                 dark:bg-gray-950 '>
-                    <div className='flex justify-between bg-bgcolor p-2'>
-                        <div>
-                            <h3 className='text-md uppercase  dark:text-white'>Total Users</h3>
-                            <p className='text-xl mt-2'>{totalUsers}</p>
+                <div className="flex flex-col p-3 gap-4 ml-auto md:w-72  max-w-64 min-w-60  rounded-md shadow-md dark:bg-slate-950">
+                    <div className="flex justify-between bg-bgcolor p-2 ">
+                        <div className="flex flex-col justify-center items-center w-full">
+                            <h3 className="text-md uppercase text-white text-center">Total users</h3>
+                            <p className="text-xl mt-1 text-gray-300 text-center">{totalUsers}</p>
                         </div>
-                        <HiOutlineUserGroup className='bg-teal-500 text-5xl
-                         text-white rounded-full p-3 shadow-lg' />
                     </div>
-
                 </div>
-                <div className='flex flex-col p-3 gap-4 md:w-72 w-full rounded-md shadow-md dark:bg-slate-950'>
-                    <div className='flex justify-between bg-bgcolor p-2'>
-                        <div>
-                            <h3 className='text-md text-gray-500 uppercase dark:text-white'>Total Posts</h3>
-                            <p className='text-xl mt-2'>{totalPosts}</p>
+                <div className="flex flex-col p-3 gap-4 md:w-72 ml-auto max-w-64 min-w-60 rounded-md shadow-md dark:bg-slate-950">
+                    <div className="flex justify-between bg-bgcolor p-2">
+                        <div className="flex flex-col justify-center items-center w-full">
+                            <h3 className="text-md uppercase text-white text-center">Total posts</h3>
+                            <p className="text-xl mt-1 text-gray-300 text-center">{totalPosts}</p>
                         </div>
-                        <HiAnnotation className='bg-teal-500 text-5xl
-                         text-white rounded-full p-3 shadow-lg' />
                     </div>
                 </div>
 
-                <div className='flex flex-col p-3 gap-4 md:w-72 w-full rounded-md shadow-md dark:bg-slate-950'>
-                    <div className='flex justify-between bg-bgcolor p-2'>
-                        <div>
-                            <h3 className='text-md text-gray-500 uppercase
-                             dark:text-white'>Total Comments</h3>
-                            <p className='text-xl mt-2'>{totalComment}</p>
+                <div className="flex flex-col p-3 gap-4 md:w-72 ml-auto  max-w-64 min-w-60 rounded-md shadow-md ">
+                    <div className="flex justify-between bg-bgcolor p-2">
+                        <div className="flex flex-col justify-center items-center w-full">
+                            <h3 className="text-md uppercase text-white text-center">Total comments</h3>
+                            <p className="text-xl mt-1 text-gray-300 text-center">{totalComment}</p>
                         </div>
-                        <HiDocumentText className='bg-teal-500 text-5xl
-                         text-white rounded-full p-3 shadow-lg' />
                     </div>
                 </div>
+
             </div>
             <div className="flex flex-wrap gap-5 p-3 mx-auto justify-center">
-                <div className="flex flex-col w-full shadow-md p-2 rounded-md dark:bg-slate-950 md:w-auto">
+                <div className="flex flex-col , max-w-96 min-w-72 shadow-md p-2 rounded-md md:w-auto">
                     <div className=" flex p-3 text-sm font-semibold justify-between ">
-                        <h1 className='text-center p-3  font-semibold'>Recent users</h1>
+                        <h1 className='text-center p-3 text-white  font-semibold'>Recent users</h1>
                         <button  >
                             <Link className='text-green-400 font-semibold underline hover:opacity-90
                             font-sans' to="/dashboard?tab=users">View more</Link>
                         </button>
                     </div>
-                    <Table hoverable>
+                    <Table >
                         <Table.Head>
-                            <Table.HeadCell className='text-white' >Avtar</Table.HeadCell>
-                            <Table.HeadCell className='text-white'>Username</Table.HeadCell>
-                        </Table.Head>
+                            <Table.HeadCell  >Avtar</Table.HeadCell>
+                            <Table.HeadCell >Username</Table.HeadCell>
+                        </Table.Head >
                         {users && users.map((user) => (
-                            <Table.Body key={user._id} className='divide-y'>
+                            <Table.Body key={user._id} className='divide-y hover:bg-bg5 bg-bg4'>
                                 <Table.Row className=' dark:bg-slate-900 
                                 dark:border-gray-700'>
                                     <Table.Cell>
@@ -161,45 +157,45 @@ function DashbordComp() {
 
                     </Table>
                 </div>
-                <div className="flex flex-col w-full shadow-md p-2 rounded-md dark:bg-gray-950 md:w-auto">
-                    <div className=" flex p-3 text-sm font-semibold justify-between ">
-                        <h1 className='text-center p-3 font-semibold'>Recent posts</h1>
-                        <button  >
-                            <Link className='text-green-400 font-semibold underline hover:opacity-90
-                            font-sans ' to="/dashboard?tab=posts">View more</Link>
-                        </button>
+                <div className="flex flex-col max-w-80 shadow-md p-2 rounded-md dark:bg-gray-950 md:w-auto">
+                    <div className="flex flex-col items-center">
+                        <div className="flex p-3 text-sm font-semibold justify-between w-full">
+                            <h1 className='text-center p-3 font-semibold text-white'>Recent posts</h1>
+                            <button>
+                                <Link className='text-green-400 font-semibold underline hover:opacity-90 font-sans' to="/dashboard?tab=posts">View more</Link>
+                            </button>
+                        </div>
+                        <Table className="w-full">
+                            <Table.Head>
+                                <Table.HeadCell>Title</Table.HeadCell>
+                                <Table.HeadCell>Category</Table.HeadCell>
+                            </Table.Head>
+                            {posts && posts.map((post) => (
+                                <Table.Body key={post._id} className='divide-y bg-slate-900 hover:bg-bg bg-bg4'>
+                                    <Table.Row>
+                                        <Table.Cell className='text-white font-semibold text-sm'>{post.title}</Table.Cell>
+                                        <Table.Cell>{post.category}</Table.Cell>
+                                    </Table.Row>
+                                </Table.Body>
+                            ))}
+                        </Table>
                     </div>
-                    <Table hoverable>
-                        <Table.Head>
-                            <Table.HeadCell className='text-white'>Title</Table.HeadCell>
-                            <Table.HeadCell className='text-white'>Category</Table.HeadCell>
-                        </Table.Head>
-                        {posts && posts.map((post) => (
-                            <Table.Body key={posts._id} className='divide-y bg-slate-900'>
-                                <Table.Row>
-                                    <Table.Cell className='text-white font-semibold text-sm'>{post.title}</Table.Cell>
-                                    <Table.Cell>{post.category}</Table.Cell>
-                                </Table.Row>
-                            </Table.Body>
-                        ))}
-
-                    </Table>
                 </div>
-                <div className="flex flex-col w-full shadow-md p-2 rounded-md dark:bg-gray-950 md:w-auto">
+                <div className="flex flex-col max-w-64 min-w-56 shadow-md p-2 rounded-md  md:w-auto">
                     <div className=" flex p-3 text-sm font-semibold justify-between ">
-                        <h1 className='text-center p-3'>Recent comments</h1>
+                        <h1 className='text-center p-3 text-white'>Recent comments</h1>
                         <button className='text-green-400 font-semibold underline
                             font-sans hover:opacity-90' >
                             <Link to="/dashboard?tab=comments">View more</Link>
                         </button>
                     </div>
-                    <Table hoverable>
+                    <Table >
                         <Table.Head>
-                            <Table.HeadCell className='text-white '>Comments</Table.HeadCell>
-                            <Table.HeadCell className='text-white'>Likes</Table.HeadCell>
+                            <Table.HeadCell >Comments</Table.HeadCell>
+                            <Table.HeadCell >Likes</Table.HeadCell>
                         </Table.Head>
                         {comments && comments.map((comment) => (
-                            <Table.Body key={comment._id} className='divide-y bg-slate-900  '>
+                            <Table.Body key={comment._id} className='divide-y bg-slate-900 hover:bg-bg5 bg-bg4  '>
                                 <Table.Row className=' dark:bg-slate-900 
                                 dark:border-gray-700'>
                                     {/* <Table.Cell>

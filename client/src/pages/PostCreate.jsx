@@ -102,12 +102,13 @@ function PostCreate() {
 
 
     return (
-        <div className='mx-auto min-h-screen p-3 max-w-3xl '>
+        <div className='mx-auto min-h-screen p-3 max-w-3xl'>
             <h1 className='text-center font-semibold my-7 text-3xl mt-14 tracking-tighter'>Create post</h1>
+
             <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
                 <div className='flex flex-col gap-4 sm:flex-row justify-between'>
                     <TextInput type='text' placeholder='Title' id='title' required
-                        className='flex-1' onChange={(e) => setFormdata({ ...formdata, title: e.target.value })} />
+                        className='flex-1 font-bold' onChange={(e) => setFormdata({ ...formdata, title: e.target.value })} />
                     <Select onChange={(e) => setFormdata({ ...formdata, category: e.target.value })}>
                         <option value="uncategorize">Select a catogory</option>
                         <option value="javascript">Javascript</option>
@@ -121,19 +122,22 @@ function PostCreate() {
                 <div className='flex gap-4 items-center justify-between border-4
                  border-teal-400 border-dotted p-3'>
                     <FileInput type="file" accept='images/*' onChange={(e) => setfile(e.target.files[0])} ></FileInput>
-                    <Button type='button' gradientDuoTone="purpleToBlue" size="sm"
-                        onClick={uploadImage} pill>
-                        {imageUploadProgress ? <Spinner size="md" className='flex mx-auto' /> : "Upload image"}</Button>
+                    <button type='button' size="sm"
+                        onClick={uploadImage} pill className='bg-blue-600 text-white font-semibold p-2 hover:opacity-90
+                         rounded-full text-sm'>
+
+                        {imageUploadProgress ? <Spinner size="md" className='flex mx-auto' /> : "Upload image"}</button>
                 </div>
                 {imageUploadError && <p className='text-red-700'>{imageUploadError}</p>}
                 {formdata.image && <img src={formdata.image} alt='upload'
                     className="w-24 h-24 object-cover"></img>}
                 <ReactQuill onChange={(value) => setFormdata({ ...formdata, content: value })} required
-                    className='h-56 mb-7 dark:text-white '
+                    placeholder='Description'
+                    className='h-52 mb-7 '
                     theme='snow' />
 
-                <Button type='submit' gradientDuoTone="purpleToBlue" className='bg-red-400'>
-                    {loading ? <Spinner size="md" className='mx-auto' /> : "Create post"} </Button>
+                <button type='submit' className='bg-green-500 hover:opacity-90 text-white font-semibold py-1'>
+                    {loading ? <Spinner size="md" className='mx-auto' /> : "Create a post"} </button>
 
                 {publishError && <p className='text-red-500'>{publishError}</p>}
             </form>

@@ -22,9 +22,9 @@ mongoose.connect(process.env.mongo).then(() => {
     console.log("mongodb connection failed", err);
 })
 
-// app.get("/jsut", (req, res) => {
-//     res.json("this is just test route")
-// })
+app.get("/jsut", (req, res) => {
+    res.json("this is just test route")
+})
 
 app.use(express.json())
 app.use(cookieParser())

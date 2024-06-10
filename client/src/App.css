@@ -6,3 +6,10 @@
 .custom-toast {
   @apply text-sm; /* Use Tailwind's text size utilities */
 }
+.custom-dropdown-item:hover {
+  background-color: black !important;
+  color: inherit !important;
+}
+.custom-sidebar {
+  background-color: black !important; /* Important to override existing styles */
+}

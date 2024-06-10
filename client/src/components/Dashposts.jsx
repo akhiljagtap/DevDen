@@ -101,14 +101,14 @@ function Dashposts() {
 
 
     return (
-        <div className='table-auto p-3 md:mx-auto mt-16 '>
+        <div className='table-auto p-3 md:mx-auto mt-16 bg-bg4 '>
             {currentUser.isAdmin && userposts.length > 0 ? (
 
-                <Table hoverable className='shadow-md '>
+                <Table className='shadow-md '>
                     <Table.Head>
                         <Table.HeadCell>Updated date</Table.HeadCell>
                         <Table.HeadCell>Image</Table.HeadCell>
-                        <Table.HeadCell className='text-white'>Title </Table.HeadCell>
+                        <Table.HeadCell >Title </Table.HeadCell>
                         <Table.HeadCell> Category</Table.HeadCell>
                         <Table.HeadCell>Delete</Table.HeadCell>
                         <Table.HeadCell>
@@ -119,19 +119,19 @@ function Dashposts() {
                         {
                             userposts.map((post) => {
                                 return (
-                                    <Table.Body className='divide-y'>
+                                    <Table.Body className='divide-y hover:bg-bg5'>
                                         <Table.Row className='font-medium  dark:bg-gray-950'>
                                             <Table.Cell className='font-medium'>{new Date(post.updatedAt).toLocaleDateString()}</Table.Cell>
 
                                             <Table.Cell>
                                                 <Link to={`/post/${post.slug}`}>
                                                     <img src={post.image} alt={post.title}
-                                                        className='w-20 h-12 bg-gray-400' />
+                                                        className='w-20 h-12 text-white' />
                                                 </Link>
                                             </Table.Cell>
                                             <Table.Cell className='dark:text-white'>
                                                 <Link to={`/post/${post.slug}`}>
-                                                    <p className='dark:text-white'>{post.title}</p>
+                                                    <p className='text-white font-semibold'>{post.title}</p>
                                                 </Link>
                                             </Table.Cell>
                                             <Table.Cell>{post.category}</Table.Cell>
@@ -162,7 +162,7 @@ function Dashposts() {
 
 
 
-            ) : (<p>You have no post yet!</p>)
+            ) : (<p className='text-white '>You have no post yet!</p>)
             }
             <Modal show={showModal} onClose={() => setshowModal(false)} popup size="md" >
                 <Modal.Header />

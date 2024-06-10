@@ -1,7 +1,6 @@
 import { Avatar, Button, Dropdown, Navbar, TextInput, Spinner } from 'flowbite-react'
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { AiOutlineSearch } from "react-icons/ai";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { TiArrowRight } from "react-icons/ti";
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,22 +10,38 @@ import { PiSignOutBold } from "react-icons/pi";
 import { MdOutlineEmail } from "react-icons/md";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { RiShareBoxLine } from "react-icons/ri";
+import { AiOutlineSearch } from 'react-icons/ai';
+import "../App.css";
 
 
 
 function Header() {
-  const { theme } = useSelector(state => state.theme)
+  // const { theme } = useSelector(state => state.theme)
   const [isovered, setisovered] = useState(false)
   const [isMouseovered, setisMouseOvered] = useState("")
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const [loading, setLoading] = useState(false)
   const [searchTerm, setsearchTerm] = useState('')
+  const [isExpanded, setisExpanded] = useState(false)
   const path = useLocation().pathname
   const dispatch = useDispatch()
   // const dispatch = useDispatch()
   const { currentUser } = useSelector(state => state.user)
+  // console.log(currentUser)
   const location = useLocation()
   const navigate = useNavigate()
+  const [tab, settab] = useState("")
+
+  const isActive = location.pathname === '/'
+  const isAboutActive = location.pathname === '/about'
+
+  useEffect(() => {
+    const urlSearch = new URLSearchParams(location.search)
+    const tabFromUrl = urlSearch.get("tab")
+    if (tabFromUrl) {
+      settab(tabFromUrl)
+    }
+  })
 
   const handleSignout = async () => {
     try {
@@ -80,6 +95,14 @@ function Header() {
     setisMouseOvered(false)
   }
 
+  const handleFocus = () => {
+    setisExpanded(true)
+
+  }
+  const handleBlur = () => {
+    setisExpanded(false)
+  }
+
 
 
 
@@ -94,7 +117,7 @@ function Header() {
 
 
   return (
-    <Navbar className='border-b-1 dark:bg-black text-white fixed top-0 left-0 w-full z-10 '>
+    <Navbar className='border-b-1 bg-bg4 text-white fixed top-0 left-0 w-full z-10 '>
       {/* <Link to={"/"} className=' self-center  whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'>
         <span className='px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
         rounded text-white'>DevDen</span>
@@ -107,23 +130,28 @@ function Header() {
       </button> */}
 
       <div class="flex items-center">
+        {/* <Link to={"/dashboard "}><MdDensitySmall className='' size={20} /></Link> */}
         <img src="https://cdn3d.iconscout.com/3d/premium/thumb/code-4059153-3364039@0.png"
           className="w-8 h-8 mr-2 " alt="logo" />
-        <p class="text-2xl dark:text-white text-black font-medium tracking-tighter leading-tight" ><Link to={"/"}>DevDen</Link></p>
+        <h1 class="text-2xl  text-white font-medium tracking-tighter leading-tight" ><Link to={"/"}>DevDen</Link></h1>
       </div>
 
 
       <form onSubmit={handleSubmit}>
-        <div className='relative'>
-          <div className='absolute inset-y-0 left-3 flex items-center pointer-events-none'>
-            <AiOutlineSearch className='text-gray-400' size={20} />
+        <div className="relative w-10 md:w-96 ">
+          <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+            <AiOutlineSearch className="text-white " size={18} />
           </div>
           <input
-            type='text'
-            className='bg-bgcolor pl-10 p-0.5 w-full placeholder:text-sm focus:outline-none outline-none border-none'
-            placeholder='Search article'
+            type="text"
+            className={`bg-bg5 pl-10 p-1 placeholder:text-sm focus:outline-none outline-none
+            border-none ${isExpanded ? 'w-full rounded-full' : 'w-48 rounded-full'
+              } transition-width duration-300`}
+            placeholder="Search article"
             value={searchTerm}
             onChange={(e) => setsearchTerm(e.target.value)}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
           />
         </div>
 
@@ -136,20 +164,15 @@ function Header() {
 
 
 
-      {/* <Button className='w-12 h-12 lg:hidden' pill>
-        <AiOutlineSearch />
-      </Button> */}
+
       <div className='flex gap-2 md:order-2 '>
-        {/* <button className='w-12 h-12 hidden sm:inline' color="gray" pill onClick={() => dispatch(toogleTheme())}>
-          <FaMoon />
-          {theme === "dark" ? <FaMoon  /> : <FaSun size="" />}
-        </button > */}
-        <Link to={"/dashboard"} >
+
+        <Link to={"/dashboard" ? '/' : ''} >
           {currentUser ? (
             <Dropdown arrowIcon={false}
 
               inline
-              className='dark:bg-bgcolor shadow-sm shadow-bgcolor'
+              className='bg-bg3 shadow-sm shadow-bg2  '
               label={
 
                 <div className='relative' onMouseEnter={handleMouseEnter}
@@ -170,72 +193,69 @@ function Header() {
                   )}
                 </div>
 
-
-
-
-
               }
 
+
+
+
+
             >
-              <Dropdown.Header>
-                <span className='flex items-center'>
-                  <TbUser className='text-white-400 mr-2' size={20} /> {/* User icon */}
-                  <span className='font-semibold tracking-tight'>@{currentUser.username}</span>
+              <Dropdown.Header >
+                <span className='flex items-center '>
+                  <TbUser className='text-white mr-2' size={20} /> {/* User icon */}
+                  <span className='font-semibold tracking-tight text-white'>{currentUser.username}</span>
                 </span>
                 <span className='flex items-center mt-2'>
-                  <MdOutlineEmail className='text-white-400 mr-2' size={20} /> {/* User icon */}
-                  <span className='font-medium text-gray-400 tracking-tight'>{currentUser.email}</span>
+                  <MdOutlineEmail className='text-white mr-2' size={20} /> {/* User icon */}
+                  <span className='font-medium text-white tracking-tight'>{currentUser.email}</span>
                 </span>
                 {/* <span className='truncate text-sm font-thin '>{currentUser.email}</span> */}
               </Dropdown.Header>
 
-              <Link to={"/dashboard?tab=profile"} className="flex items-center">
-                <Dropdown.Item className='mt-3'>
-                  <p className='font-semibold flex  '>
-                    <MdOutlineModeEdit size={20} className="mr-2" />
+              <Dropdown.Item className='mt-3 custom-dropdown-item'>
+                <Link to={"/dashboard?tab=profile"} className="flex items-center ">
+                  <p className='font-semibold flex text-white'>
+                    <MdOutlineModeEdit size={20} className="mr-2 text-white" />
                     Edit profile
                   </p>
-                </Dropdown.Item>
-              </Link>
-              <Dropdown.Item className='mt-3'>
-                <Link to={"/"} className="flex items-center">
-                  <RiShareBoxLine className='mr-2' size={20} /> {/* Icon */}
-                  <p className="text-white ">DevDen Homepage</p> {/* Text */}
+                </Link>
+              </Dropdown.Item>
+              <Dropdown.Item className='mt-3 custom-dropdown-item'>
+                <Link to={"/dashboard" ? '/' && '/dashboard' : ''} className="flex items-center">
+                  <RiShareBoxLine className='mr-2 text-white' size={20} /> {/* Icon */}
+                  <p className="text-white font-semibold ">View more</p> {/* Text */}
                 </Link>
               </Dropdown.Item >
-              {/* <Dropdown.Divider /> */}
-              <Dropdown.Item className='mt-3' onClick={handleSignout}><PiSignOutBold size={20}
-                className='text-white mr-2' />Log out
+
+              <Dropdown.Item className='mt-3 custom-dropdown-item flex items-center'>
+                <PiSignOutBold className='mr-2 text-white' size={20} />
+                <p className='text-white font-semibold' onClick={handleSignout}>Log out</p>
               </Dropdown.Item>
 
 
             </Dropdown>
           ) : (
 
-            // <Button gradientDuoTone="purpleToBlue">
-            //   Signin
-            // </Button>
+
             <>
 
               <div className="flex justify-center">
-                {/* <div className='flex flex-col items-center mr-4'>
-                  <button className='tracking-tight leading-tight text-green-400 hover:underline mt-3 text-md'>
-                    <Link to={"/signin"}>Sign In</Link>
-                  </button>
-                </div> */}
+
 
                 <div className='flex items-center space-x-4'>
 
-                  <button onMouseEnter={() => setisovered(true)}
+                  {/* <button onMouseEnter={() => setisovered(true)}
                     onMouseLeave={() => setisovered(false)} className='bg-white  text-black rounded-lg font-semibold
-                    flex items-center tracking-tight p-0.5 hover:bg-gray-200 '><Link to={"/signin"} className='ml-2'></Link>Sign in
+                    flex items-center tracking-tight p-0.5 hover:bg-gray-200 '><Link to={'/signin'}>signin</Link>
 
                     <div className='flex items-center mt-0.5 ml-2'>
                       {isovered ? (<TiArrowRight className='w-5 h-5 transition-all' />) : (
                         <MdKeyboardArrowRight className='w-5 h-5 transition-all' />
                       )}
                     </div>
-                  </button>
+                  </button> */}
+
+                  <button><Link to={'/signin'} className='hover:underline hover:text-blue-300'>sign in</Link></button>
 
 
                 </div>
@@ -252,33 +272,33 @@ function Header() {
 
       <Navbar.Collapse>
 
-        <Navbar.Link active={path === "/"}>
-          <Link className='font-semibold tracking-normal flex  uppercase hover:bg-bgcolor transition-all
-           ' to={"/"}>Posts</Link>
+        <Navbar.Link active={isActive} as={"div"}>
+          <Link className={`font-semibold  flex p-1  text-white  uppercase tracking-tight
+          transition-all ${isActive ? 'text-blue-400' : 'text-white'}
+           `} to={"/"}>Posts</Link>
         </Navbar.Link>
-        <Navbar.Link active={path === "/about"} as={"div"}
-          className='font-semibold  tracking-normal uppercase '>
-          <Link to={"/about"} className='hover:bg-bgcolor transition-all' >Connect us</Link>
+        <Navbar.Link active={isAboutActive} as={"div"}>
+          <Link className={`font-semibold  flex p-1  text-white tracking-tight uppercase 
+          transition-all  ${isAboutActive ? 'text-blue-400' : 'text-gray-500'}
+           `} to={"/about"}>Connect us</Link>
         </Navbar.Link>
-        <Navbar.Link active={path === "/premium"} as={"div"}
-          className='font-semibold  tracking-normal'>
-
-        </Navbar.Link>
-
-
 
 
       </Navbar.Collapse>
 
-
-
-
-
-
-
-
     </Navbar >
   )
 }
+
+
+
+
+
+
+
+
+
+
+
 
 export default Header

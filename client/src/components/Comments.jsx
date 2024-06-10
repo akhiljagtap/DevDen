@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Comment from './Comment';
+import { MdOutlineDoNotDisturbOn } from "react-icons/md"
 
 
 export default function CommentSection({ postId }) {
@@ -112,7 +113,7 @@ export default function CommentSection({ postId }) {
         <div className='max-w-2xl mx-auto w-full p-3'>
             {currentUser ? (
                 <div className='flex items-center gap-1 my-5 text-gray-500 text-sm'>
-                    <p>Signed in as:</p>
+                    <p className='font-medium'>Signed in as:</p>
                     <img
                         className='h-5 w-5 object-cover rounded-full'
                         src={currentUser.avtar}
@@ -120,7 +121,7 @@ export default function CommentSection({ postId }) {
                     />
                     <Link
                         to={'/dashboard?tab=profile'}
-                        className='text-xs text-cyan-600 hover:underline'
+                        className='text-xs font-semibold text-green-400 text-cyan-600 hover:underline'
                     >
                         @{currentUser.username}
                     </Link>
@@ -136,22 +137,23 @@ export default function CommentSection({ postId }) {
             {currentUser && (
                 <form
                     onSubmit={handleSubmit}
-                    className='border border-teal-500 rounded-md p-3'
+                    className=' rounded-md p-3'
                 >
-                    <Textarea
-                        placeholder='Add a comment...'
+                    <Textarea className='bg-bg5 text-white font-semibold tracking-wide resize-none'
+                        placeholder='Comment...'
                         rows='3'
                         maxLength='200'
                         onChange={(e) => setComment(e.target.value)}
                         value={comment}
                     />
                     <div className='flex justify-between items-center mt-5'>
-                        <p className='text-gray-500 text-xs'>
+                        <p className='text-gray-500 text-xs font-semibold'>
                             {200 - comment.length} characters remaining
                         </p>
-                        <Button pill gradientDuoTone='purpleToBlue' type='submit' disabled={comment.length === 0}>
+                        <button className='bg-blue-700 text-white font-semibold p-1 rounded-full 
+                        flex items-center px-2 hover:opacity-90' type='submit' disabled={comment.length === 0}>
                             {loading ? <Spinner size="sm" /> : "Comment"}
-                        </Button>
+                        </button>
                     </div>
                     {commentError && (
                         <Alert color='failure' className='mt-5'>
@@ -161,11 +163,17 @@ export default function CommentSection({ postId }) {
                 </form>
             )}
             {comments.length === 0 ? (
-                <p className='text-sm my-5'>No comments yet!</p>
+                <div className="flex flex-col">
+                    <div className="flex items-center my-5 text-gray-200">
+                        <p className="text-sm font-semibold mr-2">No comments yet!</p>
+                        <MdOutlineDoNotDisturbOn color='red' size={20} />
+                    </div>
+                </div>
+
             ) : (
                 <>
-                    <div className='text-sm my-5 flex items-center gap-1'>
-                        <p>Comments</p>
+                    <div className='text-sm my-5 text-white flex items-center gap-1'>
+                        <p>Total Comments</p>
                         <div className='border border-gray-400 py-1 px-2 rounded-sm'>
                             <p>{comments.length}</p>
                         </div>

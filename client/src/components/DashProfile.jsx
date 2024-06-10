@@ -15,6 +15,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import { BiEditAlt } from "react-icons/bi";
 
 function DashProfile() {
+    const inputref = useRef()
     const filePickerRef = useRef()
     const [imageFile, setImageFile] = useState(null)
     const [imageFileUrl, setImageFileUrl] = useState(null)
@@ -39,6 +40,13 @@ function DashProfile() {
             setImageFileUrl(URL.createObjectURL(file))
         }
     }
+
+    const inputFocus = () => {
+        inputref.current.focus()
+    }
+    useEffect(() => {
+        inputFocus()
+    })
 
     // useEffect(() => {
     //     if (imageFile) {
@@ -102,21 +110,18 @@ function DashProfile() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // if (Object.keys(formdata).length === 0) {
-        //     return dispatch(updateFailure("No changes made."))
-        //     // console.log("nothing to update");
+        if (Object.keys(formdata).length === 0) {
+            return seteror("No changes made")
+
+        }
 
 
-        // }
+
+
         try {
-            if (Object.keys(formdata).length === 0) {
-                return dispatch(updateFailure("No changes made."))
-                // console.log("nothing to update");
-            }
-
-            dispatch(updateStart())
-
+            // dispatch(updateStart())
             setloading(true)
+            seteror(null)
             const res = await fetch(`/api/user/update/${currentUser._id}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -125,12 +130,13 @@ function DashProfile() {
             const data = await res.json()
             if (!res.ok) {
                 setloading(false)
-                dispatch(updateFailure(data.message))
+                seteror("something went wrong!")
             } else {
                 setloading(false)
                 dispatch(updateSuccess(data))
             }
         } catch (error) {
+            seteror("something went wrong!")
             setloading(false)
             console.log(error);
             dispatch(updateFailure(error.message))
@@ -247,32 +253,35 @@ function DashProfile() {
                 {
                     imageFileUploadingError && <Alert>{imageFileUploadingError}</Alert>
                 }
-                <TextInput type='text' id='username' placeholder='username'
+                <TextInput type='text' id='username' placeholder='username' ref={inputref}
                     defaultValue={currentUser.username} onChange={handlechange}></TextInput>
                 <TextInput type='email' id='email' placeholder='email'
                     defaultValue={currentUser.email} onChange={handlechange}></TextInput>
-                <TextInput type='password' id='password'
+                <TextInput type='password' id='password' placeholder='password'
                     onChange={handlechange}></TextInput>
-                <Button gradientDuoTone="purpleToBlue" type='submit' disabled={loading}>
-                    {loading ? <Spinner size="sm" /> : "Update"}</Button>
+                <button className='bg-green-700 text-white font-semibold  py-2 rounded-full
+                tracking-tighter  text-sm hover:opacity-80' type='submit' disabled={loading}>
+                    {loading ? <Spinner size="sm" /> : "Update changes "}
+                </button>
 
 
 
                 {
                     currentUser.isAdmin && (
                         <Link to={"/createpost"}>
-                            <Button className='w-full' type='button' disabled={loading} gradientDuoTone="purpleToPink">
-                                Create a post
-                            </Button>
+                            <button className='w-full bg-bg5 text-white font-semibold text-sm
+                            py-2 hover:opacity-90 rounded-full ' type='button' disabled={loading} >
+                                Create new post
+                            </button>
                         </Link>
                     )
                 }
 
             </form>
             {error && <p className='text-red-600 mt-3'>{error}</p>}
-            <div className='flex justify-between mt-2 text-red-500 cursor-pointer'>
-                <span onClick={() => setshowModal(true)}>Delete</span>
-                <span onClick={handleSignout}>Signout</span>
+            <div className='flex justify-between mt-2 text-red-500 cursor-pointer '>
+                <span className='hover:underline' onClick={() => setshowModal(true)}>Delete</span>
+                <span className='hover:underline' onClick={handleSignout}>Signout</span>
             </div>
             <Modal show={showModal} onClose={() => setshowModal(false)} popup size="md" >
                 <Modal.Header />

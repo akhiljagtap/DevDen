@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function PostCard({ post }) {
+    console.log(post.slug)
+    console.log(post.title)
 
     return (
         <div className='group relative overflow-hidden w-full border h-[400px] rounded-lg
@@ -11,7 +13,8 @@ function PostCard({ post }) {
                 <img src={post.image} className='h-[260px] w-full object-cover group-hover:h-[200px] transition-all
                 duration-200 z-20' />
             </Link>
-            <div className='flex flex-col gap-2 p-3'>
+
+            <div className='flex flex-col gap-2 p-3 text-white'>
                 <p className='text-lg font-semibold line-clamp-2'>{post.title}</p>
                 <span className='text-sm italic'>{post.category}</span>
                 <Link to={`/post/${post.slug}`} className='z-10 group-hover:bottom-0 absolute bottom-[-200px]
@@ -20,8 +23,8 @@ function PostCard({ post }) {
                     <button>Read article</button>
                 </Link>
             </div>
-
         </div>
+
     )
 }
 

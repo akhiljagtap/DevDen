@@ -5,19 +5,38 @@ import { Link, useNavigate } from 'react-router-dom';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [isUsernameValid, setisUsernameValid] = useState(true)
+  const [usernameError, setusernameError] = useState('')
+  const [errorMessage, setErrorMessage] = useState(null)
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
+
+
   };
+
+  const disabledButton = !formData.username || !formData.password
+
+
 
   // console.log(formData);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.username || !formData.email || !formData.password) {
-      return setErrorMessage('Please fill out all fields.');
+    if (!formData.username || !formData.password) {
+      return setErrorMessage(<p className='text-red-600 tracking-wider font-medium '>All feilds are required.</p>)
     }
+
+
+
+
+
+
+    // if (formData.username === "") {
+    //   setisUsernameValid(false)
+    //   setusernameError("username is required")
+    // }
     try {
       setLoading(true);
       setErrorMessage(null);
@@ -42,42 +61,46 @@ export default function SignUp() {
 
   return (
 
-    <div className="flex flex-col items-center min-h-screen bg-gray-100">
-      <h2 className="text-2xl font-bold mt-24 text-black mb-2 tracking-tighter ">Create Your Account</h2>
-      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full 
+    <div className="flex flex-col items-center min-h-screen  bg-black">
+      <h2 className="text-2xl font-bold mt-24 text-white mb-2 tracking-tighter ">Create Your Account</h2>
+      <form onSubmit={handleSubmit} className="bg-bg3 shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full 
       sm:w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/4">
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-semibold leading-tight mb-2 " for="first-name">
+          <label className="block text-white text-sm font-semibold leading-tight mb-2 " for="first-name">
             username
           </label>
-          <input onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight 
-          focus:outline-none focus:shadow-outline placeholder:text-sm text-xs"
+          <input onChange={handleChange} className={`shadow appearance-none border bg-bgcolor rounded w-full py-2 px-3
+          focus:outline-none focus:shadow-outline placeholder:text-sm text-xs text-white  `}
             id="username" type="text" placeholder="username" />
+
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2 leading-tight " for="email">
+          <label className="block text-white text-sm font-bold mb-2 leading-tight " for="email">
             Email
           </label>
-          <input onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none placeholder:text-sm
+          <input onChange={handleChange} className="shadow bg-bgcolor text-white  appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none placeholder:text-sm
           focus:shadow-outline text-xs" id="email" type="email" placeholder="name@example.com" />
         </div>
         <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-2 leading-tight " for="password">
+          <label className="block text-white text-sm font-bold mb-2 leading-tight " for="password">
             Password
           </label>
-          <input onChange={handleChange} className="shadow text-xs placeholder:text-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 
+          <input onChange={handleChange} className="shadow text-white  text-xs bg-bgcolor placeholder:text-sm appearance-none border rounded w-full py-2 px-3  mb-3 
           leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder='password' />
         </div>
-        <div className="flex items-center justify-center">
-          <button className="bg-green-600 text-white px-2 py-1
-           font-medium rounded hover:opacity-90 outline-none tracking-tighter ">Create my account</button>
+        <div className='flex flex-col items-center justify-center'>
+          {errorMessage && <span className='text-red-600 font-semibold text-xs mb-6'>{errorMessage}</span>}
+        </div>
+        <div className="flex items-center justify-center" >
+          <button className={`bg-green-600 text-white px-2 py-1
+           font-medium rounded  outline-none tracking-tighter ${disabledButton ? 'opacity-20 cursor-not-allowed' : 'opacity-100'} `} disabled={disabledButton} >Create my account</button>
         </div>
       </form>
       <div className="text-gray-700 text-sm mt-1 flex items-center">
 
 
-        <span className="mr-1">Already have an account?</span>
-        <Link to={"/signin"} className="text-blue-600 hover:underline font-medium">Sign In</Link>
+        <span className="mr-1 text-xs text-white">Already have an account?</span>
+        <Link to={"/signin"} className="text-blue-500 hover:underline font-medium">Sign In</Link>
       </div>
     </div>
   )

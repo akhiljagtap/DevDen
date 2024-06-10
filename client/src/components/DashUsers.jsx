@@ -109,7 +109,7 @@ function DashUsers() {
         <div className='table-auto p-3 md:mx-auto mt-16'>
             {currentUser.isAdmin && users.length > 0 ? (
 
-                <Table hoverable className='shadow-md'>
+                <Table className='shadow-md'>
                     <Table.Head >
                         <Table.HeadCell>Created date</Table.HeadCell>
                         <Table.HeadCell>User image</Table.HeadCell>
@@ -123,7 +123,7 @@ function DashUsers() {
                         {
                             users.map((user) => {
                                 return (
-                                    <Table.Body className='divide-y dark:bg-slate-950'>
+                                    <Table.Body className='divide-y  hover:bg-bg5 bg-bg4'>
                                         <Table.Row className='font-medium  dark:bg-gray-950'>
                                             <Table.Cell className='font-medium text-gray-400'>{new Date(user.createdAt).toLocaleDateString()}</Table.Cell>
 

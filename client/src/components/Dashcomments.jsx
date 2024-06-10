@@ -65,46 +65,13 @@ function DashComments() {
 
         }
     }
-    // const handleDeleteComment = async () => {
-    //     try {
-    //         const res = await fetch(`/api/comment/delete/${commentIdToDelete}`, {
-    //             method: "DELETE"
-    //         })
-    //         const data = await res.json()
-    //         if (!res.ok) {
-    //             console.log(data.message);
-    //         } else {
-    //             setComments((prev) => prev.filter((comment) => comment._id !== commentIdToDelete))
-    //             setshowModal(false)
-
-    //         }
-
-
-    //     } catch (error) {
-    //         console.log(error.message);
-
-    //     }
-
-    // }
-
-    // if (Loading) return (
-    //     <div className='flex justify-center items-center min-h-screen mx-auto'>
-    //         <Spinner size="xl"></Spinner>
-    //     </div>
-    // )
-
-
-
-
-
-
 
     return (
         <div className='table-auto p-3 md:mx-auto mt-16 '>
             {currentUser.isAdmin && comments.length > 0 ? (
 
-                <Table hoverable className='shadow-md'>
-                    <Table.Head>
+                <Table className='shadow-md'>
+                    <Table.Head className=''>
                         <Table.HeadCell>Date Updated</Table.HeadCell>
                         <Table.HeadCell className='text-white'>Commnets</Table.HeadCell>
                         <Table.HeadCell>No of likes </Table.HeadCell>
@@ -117,7 +84,7 @@ function DashComments() {
                         {
                             comments.map((comment) => {
                                 return (
-                                    <Table.Body className='divide-y bg-slate-900'>
+                                    <Table.Body className='divide-y bg-slate-900 hover:bg-bg5 bg-bg4'>
                                         <Table.Row className='font-medium  dark:bg-gray-950'>
                                             <Table.Cell className='font-medium text-gray-500'>{new Date(comment.updatedAt).toLocaleDateString()}</Table.Cell>
 
@@ -180,6 +147,13 @@ function DashComments() {
     )
 }
 export default DashComments
+
+
+
+
+
+
+
 
 
 

@@ -9,7 +9,8 @@ body {
   font-size: 1.08rem;
 }
 .react-quill .ql-editor::placeholder {
-  color: #ffffff; /* Change to your desired color */
+  color: "black"; /* Change to your desired color */
+  
 }
 
 .post-content a {

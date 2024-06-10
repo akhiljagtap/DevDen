@@ -39,6 +39,7 @@ function App() {
         <Route path='/forgotpassword' element={<ForgotPassword />} />
         <Route path='/resetpassword/:id/:token' element={<ResetPassword />} />
 
+
         <Route path='/search' element={<Search />} />
         <Route path='/post/:postSlug' element={<PostPage />} />
         <Route element={<AdminPrivateRoute />}>
@@ -48,6 +49,7 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route path='/dashboard' element={<Dashboard />} />
         </Route>
+
 
 
       </Routes>
