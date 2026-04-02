@@ -15,6 +15,8 @@ const app = express()
 
 dotenv.config()
 
+const PORT = process.env.PORT || 4000
+
 
 mongoose.connect(process.env.mongo).then(() => {
     console.log("mongodb connected successfully.");
@@ -38,17 +40,15 @@ app.use("/api/post", postrouter)
 app.use("/api/comment", commentrouter)
 app.use("/api/feedback", feedbackRouter)
 
-app.use(express.static(path.join(__dirname, '/client/dist')))
+// app.use(express.static(path.join(__dirname, '/client/dist')))
 
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
+// })
+
+app.get("/", (req, res) => {
+    res.send("API is running 🚀");
 })
-
-
-
-
-
-
 
 
 app.use((err, req, res, next) => {
@@ -62,6 +62,6 @@ app.use((err, req, res, next) => {
 
 })
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
     console.log("server is listining on 5000");
 })
