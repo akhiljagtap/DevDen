@@ -2,9 +2,6 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function PostCard({ post }) {
-    console.log(post.slug)
-    console.log(post.title)
-
     return (
         <div className='group relative overflow-hidden w-full border h-[400px] rounded-lg
          sm:w-[430px] border-teal-500 hover:border-2 transition-all'>

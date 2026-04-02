@@ -6,6 +6,7 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/
 import { app } from "../Firebase.js"
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux"
+import API_URL from '../Config.js';
 
 
 function PostCreate() {
@@ -65,9 +66,8 @@ function PostCreate() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-
             setLoading(true)
-            const res = await fetch("/api/post/create", {
+            const res = await fetch(`${API_URL}/api/post/create`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formdata)

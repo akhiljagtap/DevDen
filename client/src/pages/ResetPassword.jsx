@@ -2,6 +2,7 @@ import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
 import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import API_URL from '../Config';
 
 
 
@@ -29,7 +30,7 @@ export default function ResetPassword() {
         }
         try {
             setloading(true)
-            const res = await fetch(`/api/auth/resetpassword/${id}/${token}`, {
+            const res = await fetch(`${API_URL}/api/auth/resetpassword/${id}/${token}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formdata),

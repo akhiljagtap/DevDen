@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { VscError } from "react-icons/vsc";
+import API_URL from '../Config';
 
 function About() {
     const [feedback, setfeedback] = useState({})
@@ -26,7 +27,7 @@ function About() {
 
         try {
             seterror(null)
-            const res = await fetch("/api/feedback/feedbackmsg", {
+            const res = await fetch(`${API_URL}/api/feedback/feedbackmsg`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(feedback),
@@ -69,13 +70,13 @@ function About() {
                     <h1 className='font-semibold my-7 mt-20 text-white text-center text-3xl tracking-tighter'>About DevDen</h1>
                     <div className='text-md font-thin  flex flex-col gap-6 text-gray-400'>
                         <p>Welcome to the DevDen.This blog was created by Akhil Jagtap, as personal
-                            project to share his thoughts and ideas with world. Akhil is MERN stack developer
-                            who loves to write about technology,coding & everything in between.
+                            project to share his thoughts and ideas with world. Akhil 
+                             loves to write about technology,coding.
                         </p>
 
                         <p>
                             On this blog you'll find articles on the topic such as
-                            software developement ,DSA and coading realted.Akhil is always exploring and learning
+                            software developement,DSA and coading realted.Akhil is always exploring and learning
                             new technologies.So be sure to check back often for new content.
                         </p>
 

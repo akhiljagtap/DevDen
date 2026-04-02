@@ -6,6 +6,7 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/
 import { app } from "../Firebase.js"
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux"
+import API_URL from '../Config.js';
 
 
 function Updatepost() {
@@ -24,7 +25,7 @@ function Updatepost() {
     useEffect(() => {
         try {
             const fetchPost = async () => {
-                const res = await fetch(`/api/post/getposts?postId=${postId}`)
+                const res = await fetch(`${API_URL}/api/post/getposts?postId=${postId}`)
                 const data = await res.json()
                 if (!res.ok) {
                     console.log(data.message);

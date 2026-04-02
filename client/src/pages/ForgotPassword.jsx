@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 import "../App.css";
+import API_URL from '../Config';
 
 
 
@@ -32,7 +33,7 @@ export default function forgotpassword() {
                 return;
             }
             setloading(true)
-            const res = await fetch("/api/auth/forgotpassword", {
+            const res = await fetch(`${API_URL}/api/auth/forgotpassword`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formdata),

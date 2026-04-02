@@ -48,60 +48,6 @@ function DashSidebar() {
     }
   }
 
-  // return (
-
-
-
-
-
-
-
-  // <div className=" h-screen mt-20 ">
-  //   //   <Sidebar className='w-full md:w-56 overflow-hidden'>
-  //   //     <Sidebar.Items >
-  //   //       <Sidebar.ItemGroup >
-  //   //         <Link to={"/dashboard?tab=profile"}>
-  //   //           <Sidebar.Item active={tab === "profile"} icon={HiUser} className="font-thin  text-white" label={currentUser.isAdmin ? "Admin" : "User"} labelColor="dark" as="div">
-  //   //             Your profile
-  //   //           </Sidebar.Item>
-  //   //         </Link>
-  //   //         <Link to={"/dashboard?tab=dash"}>
-  //   //           <Sidebar.Item active={tab === "dash"} icon={HiChartPie} className="font-semibold text-white" labelColor="dark" as="div">
-  //   //             Dashboard
-  //   //           </Sidebar.Item>
-  //   //         </Link>
-  //   //         {currentUser.isAdmin && (
-  //   //           <Link to={"/dashboard?tab=posts"}>
-  //   //             <Sidebar.Item active={tab === "posts"} className="font-thin text-white" icon={HiDocumentText} as="div">
-  //   //               Posts
-  //   //             </Sidebar.Item>
-  //   //           </Link>
-  //   //         )}
-  //   //         {currentUser.isAdmin && (
-  //   //           <Link to={"/dashboard?tab=users"}>
-  //   //             <Sidebar.Item active={tab === "users"} className="font-thin text-white" icon={HiOutlineUserGroup} as="div">
-  //   //               Users
-  //   //             </Sidebar.Item>
-  //   //           </Link>
-  //   //         )}
-  //   //         {currentUser.isAdmin && (
-  //   //           <Link to={"/dashboard?tab=comments"}>
-  //   //             <Sidebar.Item active={tab === "comments"} className="font-thin text-white" icon={HiAnnotation} as="div">
-  //   //               Comments
-  //   //             </Sidebar.Item>
-  //   //           </Link>
-  //   //         )}
-
-  //   //         <Sidebar.Item className="font-thin" icon={HiArrowSmRight} onClick={handleSignout}>
-  //   //           {loading ? <div className='flex justify-center items-center min-h-screen'>
-  //   //             <Spinner size="xl"></Spinner>
-  //   //           </div> : "Signout"}
-  //   //         </Sidebar.Item>
-  //   //       </Sidebar.ItemGroup>
-  //   //     </Sidebar.Items>
-  //   //   </Sidebar>
-  //   // </div>
-  // )
   return (
     <div className="min-h-screen flex mt-14">
       <div className="min-w-56 border border-bg5 max-w-44 bg-black text-white">

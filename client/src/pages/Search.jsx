@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import PostCard from '../components/PostCard'
 import { GiTerror } from "react-icons/gi";
+import API_URL from '../Config';
 
 function Search() {
     const location = useLocation()
@@ -37,7 +38,7 @@ function Search() {
         const fetchPost = async () => {
             setLoading(true)
             const searchQuery = urlParams.toString()
-            const res = await fetch(`/api/post/getposts?${searchQuery}`)
+            const res = await fetch(`${API_URL}/api/post/getposts?${searchQuery}`)
             if (!res.ok) {
                 setLoading(false)
                 return

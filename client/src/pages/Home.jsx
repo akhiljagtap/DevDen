@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import PostCard from "../components/PostCard"
 import { Spinner } from 'flowbite-react'
 import "../App.css"
+import API_URL from '../Config'
 function Home() {
   const [posts, setPost] = useState([])
   const [loading, setloading] = useState(false)
@@ -20,7 +21,7 @@ function Home() {
     try {
       const fetchPost = async () => {
         setloading(true)
-        const res = await fetch("/api/post/getposts")
+        const res = await fetch(`${API_URL}/api/post/getposts`)
         if (res.ok) {
           const data = await res.json()
           setloading(false)
