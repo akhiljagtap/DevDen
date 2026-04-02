@@ -31,8 +31,6 @@ app.use(cookieParser())
 
 // "mongodb+srv://stack:stack@cluster0.csyo6iy.mongodb.net/"
 
-
-
 app.use("/api/isuser", testrouter)
 app.use("/api/auth", authRouter)
 app.use("/api/user", userRouter)
