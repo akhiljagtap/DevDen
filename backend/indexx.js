@@ -9,7 +9,7 @@ import postrouter from "./Routes/postRoute.js"
 import commentrouter from "./Routes/comment.Route.js"
 import path from "path"
 import feedbackRouter from "./Routes/feedBackRoute.js"
-import cors from cors
+import cors from "cors";
 
 const __dirname = path.resolve()
 const app = express()
