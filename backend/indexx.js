@@ -9,6 +9,7 @@ import postrouter from "./Routes/postRoute.js"
 import commentrouter from "./Routes/comment.Route.js"
 import path from "path"
 import feedbackRouter from "./Routes/feedBackRoute.js"
+import cors from cors
 
 const __dirname = path.resolve()
 const app = express()
@@ -49,6 +50,11 @@ app.use("/api/feedback", feedbackRouter)
 app.get("/", (req, res) => {
     res.send("API is running 🚀");
 })
+
+app.use(cors({
+  origin: "https://dev-den-eight.vercel.app",
+  credentials: true
+}));
 
 
 app.use((err, req, res, next) => {
