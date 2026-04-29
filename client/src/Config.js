@@ -1,3 +1,3 @@
-const API_URL = "https://devden-ebu7.onrender.com/";
+const API_URL = "http://localhost:5000"
 
 export default API_URL;

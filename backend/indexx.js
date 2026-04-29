@@ -11,18 +11,24 @@ import path from "path"
 import feedbackRouter from "./Routes/feedBackRoute.js"
 import cors from "cors";
 
-app.use(cors({
-  origin: "https://dev-den-eight.vercel.app",
-  credentials: true
-}));
+dotenv.config() // Load env vars as early as possible
 
 const __dirname = path.resolve()
 const app = express()
 
-dotenv.config()
+// 1. CORS MUST be the first middleware
+app.use(cors({
+  origin: 'http://localhost:5173', 
+  credentials: true,               
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
-const PORT = process.env.PORT || 4000
+// 2. Body parsers and Cookie parser
+app.use(express.json())
+app.use(cookieParser())
 
+const PORT = process.env.PORT || 5000 // Changed to 5000 to match your log
 
 mongoose.connect(process.env.mongo).then(() => {
     console.log("mongodb connected successfully.");
@@ -30,15 +36,7 @@ mongoose.connect(process.env.mongo).then(() => {
     console.log("mongodb connection failed", err);
 })
 
-app.get("/jsut", (req, res) => {
-    res.json("this is just test route")
-})
-
-app.use(express.json())
-app.use(cookieParser())
-
-// "mongodb+srv://stack:stack@cluster0.csyo6iy.mongodb.net/"
-
+// Routes
 app.use("/api/isuser", testrouter)
 app.use("/api/auth", authRouter)
 app.use("/api/user", userRouter)
@@ -46,19 +44,11 @@ app.use("/api/post", postrouter)
 app.use("/api/comment", commentrouter)
 app.use("/api/feedback", feedbackRouter)
 
-// app.use(express.static(path.join(__dirname, '/client/dist')))
-
-// app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
-// })
-
 app.get("/", (req, res) => {
     res.send("API is running 🚀");
 })
 
-
-
-
+// Error Handler
 app.use((err, req, res, next) => {
     const statuscode = err.statuscode || 500
     const message = err.message || "internal server error"
@@ -67,9 +57,8 @@ app.use((err, req, res, next) => {
         message,
         statuscode
     })
-
 })
 
 app.listen(PORT, () => {
-    console.log("server is listining on 5000");
+    console.log(`server is listening on ${PORT}`);
 })
