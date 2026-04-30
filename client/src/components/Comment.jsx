@@ -15,7 +15,7 @@ function Comment({ comment, onLike, onDelete }) {
         const getUser = async () => {
             try {
                 setloading(true)
-                const res = await fetch(`/api/user/${comment.userId}`)
+                const res = await fetch(`https://devden-1-llvj.onrender.com/api/user/${comment.userId}`)
                 const data = await res.json()
                 if (res.ok) {
                     setloading(false)

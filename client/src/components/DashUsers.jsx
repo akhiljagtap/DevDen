@@ -22,7 +22,7 @@ function DashUsers() {
         const fetchUser = async () => {
             setloading(true)
             try {
-                const res = await fetch(`/api/user/getusers`)
+                const res = await fetch(`https://devden-1-llvj.onrender.com/api/user/getusers`)
                 const data = await res.json()
                 if (res.ok) {
                     setloading(false)
@@ -51,7 +51,7 @@ function DashUsers() {
         const startIndex = users.length
         try {
             setloading(true)
-            const res = await fetch(`/api/user/getusers?startIndex=${startIndex}`)
+            const res = await fetch(`https://devden-1-llvj.onrender.com/api/user/getusers?startIndex=${startIndex}`)
             const data = await res.json()
             if (res.ok) {
                 setloading(false)
@@ -71,7 +71,7 @@ function DashUsers() {
     const handleDeleteuser = async () => {
         try {
             setloading(true)
-            const res = await fetch(`/api/user/delete/${userIdToDelete}`, {
+            const res = await fetch(`https://devden-1-llvj.onrender.com/api/user/delete/${userIdToDelete}`, {
                 method: "DELETE"
             })
             const data = await res.json()

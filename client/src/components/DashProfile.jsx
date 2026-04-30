@@ -122,7 +122,7 @@ function DashProfile() {
             // dispatch(updateStart())
             setloading(true)
             seteror(null)
-            const res = await fetch(`/api/user/update/${currentUser._id}`, {
+            const res = await fetch(`https://devden-1-llvj.onrender.com/api/user/update/${currentUser._id}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formdata)
@@ -155,7 +155,7 @@ function DashProfile() {
         try {
             dispatch(deleteStart())
             // error(null)
-            const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+            const res = await fetch(`https://devden-1-llvj.onrender.com/api/user/delete/${currentUser._id}`, {
                 method: "DELETE"
             })
             const data = await res.json()
@@ -173,7 +173,7 @@ function DashProfile() {
     }
     const handleSignout = async () => {
         try {
-            const res = await fetch("/api/user/signout", {
+            const res = await fetch("https://devden-1-llvj.onrender.com/api/user/signout", {
                 method: "POST"
             })
             if (!res.ok) {

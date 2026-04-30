@@ -22,7 +22,7 @@ function DashbordComp() {
         const fetchUsers = async () => {
             setloading(true)
             try {
-                const res = await fetch("/api/user/getusers?limit=5")
+                const res = await fetch("https://devden-1-llvj.onrender.com/api/user/getusers?limit=5")
                 const data = await res.json()
                 if (res.ok) {
                     setloading(false)
@@ -40,7 +40,7 @@ function DashbordComp() {
         const fetchPosts = async () => {
             try {
                 setloading(true)
-                const res = await fetch("/api/post/getposts?limit=5")
+                const res = await fetch("https://devden-1-llvj.onrender.com/api/post/getposts?limit=5")
                 const data = await res.json()
                 if (res.ok) {
                     setloading(false)
@@ -58,7 +58,7 @@ function DashbordComp() {
         const fetchComments = async () => {
             try {
                 setloading(true)
-                const res = await fetch("/api/comment/getadmincomment?limit=5")
+                const res = await fetch("https://devden-1-llvj.onrender.com/api/comment/getadmincomment?limit=5")
                 const data = await res.json()
                 if (res.ok) {
                     setloading(false)

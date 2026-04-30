@@ -19,7 +19,7 @@ function DashComments() {
         const fetchComments = async () => {
             setLoading(true)
             try {
-                const res = await fetch(`/api/comment/getadmincomment`)
+                const res = await fetch(`https://devden-1-llvj.onrender.com/api/comment/getadmincomment`)
                 const data = await res.json()
                 if (res.ok) {
                     setLoading(false)
@@ -48,7 +48,7 @@ function DashComments() {
         const startIndex = comments.length
         try {
             setLoading(true)
-            const res = await fetch(`/api/comment/getadmincomment?startIndex=${startIndex}`)
+            const res = await fetch(`https://devden-1-llvj.onrender.com/api/comment/getadmincomment?startIndex=${startIndex}`)
             const data = await res.json()
             if (res.ok) {
                 setLoading(false)

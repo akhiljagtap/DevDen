@@ -22,7 +22,7 @@ export default function CommentSection({ postId }) {
         }
         try {
             setloading(true)
-            const res = await fetch('/api/comment/create', {
+            const res = await fetch('https://devden-1-llvj.onrender.com/api/comment/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

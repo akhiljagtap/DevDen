@@ -46,7 +46,7 @@ function Header() {
   const handleSignout = async () => {
     try {
       setLoading(true)
-      const res = await fetch("/api/user/signout", {
+      const res = await fetch("https://devden-1-llvj.onrender.com/api/user/signout", {
         method: "POST"
       })
       if (!res.ok) {

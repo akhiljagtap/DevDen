@@ -33,7 +33,7 @@ export default function forgotpassword() {
                 return;
             }
             setloading(true)
-            const res = await fetch(`${API_URL}/api/auth/forgotpassword`, {
+            const res = await fetch(`https://devden-1-llvj.onrender.com/api/auth/forgotpassword`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formdata),

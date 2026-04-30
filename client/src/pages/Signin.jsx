@@ -28,7 +28,7 @@ export default function SignUp() {
         try {
             dispatch(signInStart())
 
-            const res = await fetch(`${API_URL}/api/auth/signin`, {
+            const res = await fetch(`https://devden-1-llvj.onrender.com/api/auth/signin`, {
                 method: 'POST',
                 credentials: "include", 
                 headers: { 'Content-Type': 'application/json' },

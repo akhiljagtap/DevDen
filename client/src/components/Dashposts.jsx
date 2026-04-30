@@ -17,7 +17,7 @@ function Dashposts() {
         const fetchpost = async () => {
             setLoading(true)
             try {
-                const res = await fetch(`/api/post/getposts?userId=${currentUser._id}`)
+                const res = await fetch(`https://devden-1-llvj.onrender.com/api/post/getposts?userId=${currentUser._id}`)
                 const data = await res.json()
                 if (res.ok) {
                     setLoading(false)
@@ -46,7 +46,7 @@ function Dashposts() {
         setLoading(true)
         const startIndex = userposts.length
         try {
-            const res = await fetch(`/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`)
+            const res = await fetch(`https://devden-1-llvj.onrender.com/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`)
             const data = await res.json()
             if (res.ok) {
                 setLoading(false)
@@ -69,7 +69,7 @@ function Dashposts() {
         setshowModal(false)
         try {
 
-            const res = await fetch(`/api/post/deleteposts/${postIdToDelete}/${currentUser._id}`, {
+            const res = await fetch(`https://devden-1-llvj.onrender.com/api/post/deleteposts/${postIdToDelete}/${currentUser._id}`, {
                 method: "DELETE"
             })
             const data = await res.json()

@@ -41,7 +41,7 @@ export default function SignUp() {
     try {
       setLoading(true);
       setErrorMessage(null);
-      const res = await fetch(`${API_URL}/api/auth/signup`, {
+      const res = await fetch(`https://devden-1-llvj.onrender.com/api/auth/signup`, {
         method: 'POST',
         credentials: "include", 
         headers: { 'Content-Type': 'application/json' },

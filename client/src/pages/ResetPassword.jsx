@@ -30,7 +30,7 @@ export default function ResetPassword() {
         }
         try {
             setloading(true)
-            const res = await fetch(`${API_URL}/api/auth/resetpassword/${id}/${token}`, {
+            const res = await fetch(`https://devden-1-llvj.onrender.com/api/auth/resetpassword/${id}/${token}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formdata),

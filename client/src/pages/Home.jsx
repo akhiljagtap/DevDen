@@ -21,7 +21,7 @@ function Home() {
     try {
       const fetchPost = async () => {
         setloading(true)
-        const res = await fetch(`${API_URL}/api/post/getposts`)
+        const res = await fetch(`https://devden-1-llvj.onrender.com/api/post/getposts`)
         if (res.ok) {
           const data = await res.json()
           setloading(false)

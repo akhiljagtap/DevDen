@@ -67,7 +67,7 @@ function PostCreate() {
         e.preventDefault()
         try {
             setLoading(true)
-            const res = await fetch(`${API_URL}/api/post/create`, {
+            const res = await fetch(`https://devden-1-llvj.onrender.com/api/post/create`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formdata)

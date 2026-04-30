@@ -25,7 +25,7 @@ function Updatepost() {
     useEffect(() => {
         try {
             const fetchPost = async () => {
-                const res = await fetch(`${API_URL}/api/post/getposts?postId=${postId}`)
+                const res = await fetch(`https://devden-1-llvj.onrender.com/api/post/getposts?postId=${postId}`)
                 const data = await res.json()
                 if (!res.ok) {
                     console.log(data.message);

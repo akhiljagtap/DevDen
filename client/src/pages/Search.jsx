@@ -38,7 +38,7 @@ function Search() {
         const fetchPost = async () => {
             setLoading(true)
             const searchQuery = urlParams.toString()
-            const res = await fetch(`${API_URL}/api/post/getposts?${searchQuery}`)
+            const res = await fetch(`https://devden-1-llvj.onrender.com/api/post/getposts?${searchQuery}`)
             if (!res.ok) {
                 setLoading(false)
                 return
